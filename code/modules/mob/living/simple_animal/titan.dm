@@ -9,13 +9,13 @@
     response_disarm = "pushes"
     response_harm = "hits"
     speed = 0
-    maxHealth = 2300
-    health = 2300
+    maxHealth = 1000
+    health = 1000
     a_intent = "harm"
     harm_intent_damage = 70
-    melee_damage_lower = 110
-    melee_damage_upper = 110
-    move_to_delay = 3
+    melee_damage_lower = 40
+    melee_damage_upper = 60
+    move_to_delay = 2
     attacktext = "claws"
     attack_sound = 'sound/hallucinations/growl1.ogg'
 //  atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
@@ -26,12 +26,9 @@
     robust_searching = 1
     stat_attack = 2
     see_in_dark = 9
-    status_flags=0
+    status_flags = 0
 //  step_sound = "avatarstep"
-//  turns_per_move = 5
-
-
-
+    turns_per_move = 5
 /mob/living/simple_animal/hostile/titan/AttackingTarget()
     ..()
 
