@@ -921,6 +921,17 @@ About the new airlock wires panel:
 	else if(istype(C, /obj/item/weapon/pai_cable))
 		var/obj/item/weapon/pai_cable/cable = C
 		cable.plugin(src, user)
+
+	else if(istype(C, /obj/item/weapon/melee/energy/sword))
+		if(locked)
+			user.visible_message("[user] cuts door bolts from [src] with [C]!.", \
+								 "<span class='notice'>You cut door bolts with [C]!</span>")
+			locked = 0
+			var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+			s.set_up(5, 1, src)
+			s.start() //sparks always.
+			src.update_icon()
+
 	else if(istype(C, /obj/item/weapon/crowbar) || istype(C, /obj/item/weapon/twohanded/fireaxe) )
 		var/beingcrowbarred = null
 		if(istype(C, /obj/item/weapon/crowbar) )

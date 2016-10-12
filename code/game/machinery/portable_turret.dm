@@ -154,6 +154,17 @@
 
 
 /obj/machinery/porta_turret/attack_hand(mob/user)
+	if(istype(user,/mob/living/carbon/alien/))
+		user.changeNext_move(CLICK_CD_MELEE)
+		take_damage(15) //30*0.5 - max alien attack damage halved(because of turret's armor)
+		if(!attacked && !emagged)
+			attacked = 1
+			spawn()
+				sleep(60)
+				attacked = 0
+		user.do_attack_animation(src)
+		visible_message("<span class='danger'>[user] has slashed [src]!</span>")
+		return
 	. = ..()
 	if(.)
 		return

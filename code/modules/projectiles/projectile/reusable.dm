@@ -39,6 +39,39 @@
 	ammo_type = /obj/item/ammo_casing/caseless/foam_dart
 	range = 10
 
+/obj/item/projectile/bullet/reusable/foam_dart/on_hit(atom/target, blocked = 0)
+	var/obj/item/ammo_casing/caseless/foam_dart/ammo = new ammo_type()
+	if(damage_type==BRUTE)
+		ammo.BB.damage_type=BRUTE
+		ammo.modified=1
+		ammo.icon_state = "foamdart_empty"
+		ammo.BB.icon_state = "foamdart_empty"
+		ammo.desc = "Its nerf or nothing! ...Although, this one doesn't look too safe."
+	if(src.contents.len)
+		ammo.BB.nodamage=0
+		ammo.BB.damage=5
+		var/obj/content
+		for(content in src.contents)
+			content.Move(ammo.BB)
+	ammo.Move(src)
+	..()
+
+
+/obj/item/projectile/bullet/reusable/on_range()
+	var/obj/item/ammo_casing/caseless/foam_dart/ammo = new ammo_type()
+	if(damage_type==BRUTE)
+		ammo.BB.damage_type=BRUTE
+		ammo.modified=1
+		ammo.icon_state = "foamdart_empty"
+		ammo.desc = "Its nerf or nothing! ...Although, this one doesn't look too safe."
+	if(src.contents.len)
+		ammo.BB.nodamage=0
+		ammo.BB.damage=5
+		var/obj/content
+		for(content in src.contents)
+			content.Move(ammo.BB)
+	ammo.Move(src)
+	..()
 
 /obj/item/projectile/bullet/reusable/pulse_beam
 	name = "foam pulse beam"

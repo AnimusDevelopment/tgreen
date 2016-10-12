@@ -77,6 +77,9 @@
 			user << "<span class='warning'>You need at least four rods to do this.</span>"
 
 /obj/item/weapon/table_parts/attack_self(mob/user as mob)
+	var/obj/structure/table/T = locate() in user.loc
+	if(T)
+		return
 	new /obj/structure/table( user.loc )
 	user.drop_item()
 	qdel(src)

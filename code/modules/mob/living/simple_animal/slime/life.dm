@@ -1,10 +1,12 @@
 
 /mob/living/simple_animal/slime
 	var/AIproc = 0 // determines if the AI loop is activated
+	var/follow_proc = 0 // determines if the follow loop is activated
 	var/Atkcool = 0 // attack cooldown
 	var/Tempstun = 0 // temporary temperature stuns
 	var/Discipline = 0 // if a slime has been hit with a freeze gun, or wrestled/attacked off a human, they become disciplined and don't attack anymore for a while
 	var/SStun = 0 // stun variable
+	var/attacking = 0 //was it ordered to attack
 
 
 /mob/living/simple_animal/slime/Life()
@@ -62,8 +64,8 @@
 
 						if(Target.Adjacent(src))
 							Target.attack_slime(src)
-					return
-				if(!Target.lying && prob(80))
+					
+				else if(!Target.lying && prob(80))
 
 					if(Target.client && Target.health >= 20)
 						if(!Atkcool)
@@ -187,7 +189,21 @@
 				powerlevel = 10
 				adjustBruteLoss(-10)
 
-
+/mob/living/simple_animal/slime/proc/Follow()
+	if(follow_proc)
+		return
+	follow_proc=1
+	while(Leader&&!holding_still&&!Target&&!Victim&&follow_proc)
+		if(canmove && isturf(loc))
+			if(get_dist(src,Leader)>3)
+				step_to(src, Leader)
+			else if(get_dist(src,Leader)<2)
+				step_away(src,Leader)
+			
+		var/sleeptime = movement_delay()
+		if(sleeptime <= 0) sleeptime = 1
+		sleep((sleeptime + 2)) // this is about as fast as a player slime can go
+	follow_proc=0
 
 /mob/living/simple_animal/slime/proc/handle_targets()
 	if(Tempstun)
@@ -235,7 +251,7 @@
 				--Friends[nofriend]
 
 		if(!Target)
-			if(will_hunt() && hungry || attacked || rabid) // Only add to the list if we need to
+			if(will_hunt() && hungry || attacked || rabid || attacking) // Only add to the list if we need to
 				var/list/targets = list()
 
 				for(var/mob/living/L in view(7,src))
@@ -246,7 +262,7 @@
 					if(L in Friends) // No eating friends!
 						continue
 
-					if(issilicon(L) && (rabid || attacked)) // They can't eat silicons, but they can glomp them in defence
+					if(issilicon(L) && (rabid || attacked || attacking)) // They can't eat silicons, but they can glomp them in defence
 						targets += L // Possible target found!
 
 					if(istype(L, /mob/living/carbon/human)) //Ignore slime(wo)men
@@ -269,27 +285,33 @@
 					if(attacked || rabid || hungry == 2)
 						Target = targets[1] // I am attacked and am fighting back or so hungry I don't even care
 					else
-						for(var/mob/living/carbon/C in targets)
-							if(!Discipline && prob(5))
-								if(ishuman(C) || isalienadult(C))
+						if(attacking)
+							Target = pick(targets)
+						else
+							for(var/mob/living/carbon/C in targets)
+								if(!Discipline && prob(5))
+									if(ishuman(C) || isalienadult(C))
+										Target = C
+										break
+
+								if(islarva(C) || ismonkey(C))
 									Target = C
 									break
-
-							if(islarva(C) || ismonkey(C))
-								Target = C
-								break
 
 			if (Target)
 				target_patience = rand(5,7)
 				if (is_adult)
 					target_patience += 3
+				if (attacking)
+					target_patience+=5
 
 		if(!Target) // If we have no target, we are wandering or following orders
 			if (Leader)
 				if(holding_still)
 					holding_still = max(holding_still - 1, 0)
-				else if(canmove && isturf(loc))
-					step_to(src, Leader)
+				else if(canmove && isturf(loc)&&(!follow_proc))
+					spawn()
+						Follow()
 
 			else if(hungry)
 				if (holding_still)
@@ -346,12 +368,25 @@
 		if ((findtext(phrase, num2text(number)) || findtext(phrase, "slimes"))) // Talking to us
 			if (findtext(phrase, "hello") || findtext(phrase, "hi"))
 				to_say = pick("Hello...", "Hi...")
+			else if (findtext(phrase,"attack"))
+				follow_proc=0
+				if(Friends[who]>5)
+					attacking=1
+					Leader=null
+					holding_still=0
+					to_say = pick("Rawr!..","Grrrr!..","Will... Kill...")
+				else
+					to_say = "No... I decide myself..."
 			else if (findtext(phrase, "follow"))
+				follow_proc=0
 				if (Leader)
+					attacking=0
 					if (Leader == who) // Already following him
 						to_say = pick("Yes...", "Lead...", "Following...")
+						holding_still=0
 					else if (Friends[who] > Friends[Leader]) // VIVA
 						Leader = who
+						holding_still=0
 						to_say = "Yes... I follow [who]..."
 					else
 						to_say = "No... I follow [Leader]..."
@@ -359,9 +394,12 @@
 					if (Friends[who] > 2)
 						Leader = who
 						to_say = "I follow..."
+						holding_still=0
+						attacking=0
 					else // Not friendly enough
 						to_say = pick("No...", "I won't follow...")
 			else if (findtext(phrase, "stop"))
+				follow_proc=0
 				if (Victim) // We are asked to stop feeding
 					if (Friends[who] > 4)
 						Victim = null
@@ -379,6 +417,8 @@
 							to_say = "Grrr..." // I'm angry but I do it
 						else
 							to_say = "Fine..."
+				else if(attacking)
+					attacking=0
 				else if (Leader) // We are asked to stop following
 					if (Leader == who)
 						to_say = "Yes... I'll stay..."
@@ -389,8 +429,13 @@
 							to_say = "Yes... I'll stop..."
 						else
 							to_say = "No... I'll keep following..."
+				else
+					holding_still=0
+				attacking=0
 			else if (findtext(phrase, "stay"))
+				follow_proc=0
 				if (Leader)
+					attacking=0
 					if (Leader == who)
 						holding_still = Friends[who] * 10
 						to_say = "Yes... Staying..."
@@ -402,6 +447,7 @@
 				else
 					if (Friends[who] > 2)
 						holding_still = Friends[who] * 10
+						attacking=0
 						to_say = "Yes... Staying..."
 					else
 						to_say = "No... I won't stay..."

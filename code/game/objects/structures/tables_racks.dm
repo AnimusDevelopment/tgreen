@@ -525,6 +525,8 @@
 		return
 	if (!can_touch(usr))
 		return
+	if(usr.weakened || usr.paralysis || usr.stat)
+		return
 	if(istype(src,/obj/structure/table/reinforced))
 		usr << "<span class='notice'>It won't budge.</span>"
 		return

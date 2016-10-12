@@ -213,6 +213,8 @@ Doesn't work on other aliens/AI.*/
 	A.xo = U.x - T.x
 	A.fire()
 
+	user.newtonian_move(turn(user.dir, 180));
+
 	return 1
 
 
