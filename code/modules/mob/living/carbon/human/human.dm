@@ -276,6 +276,8 @@
 		dat += "<tr><td><B>Handcuffed:</B> <A href='?src=\ref[src];item=[slot_handcuffed]'>Remove</A></td></tr>"
 	if(legcuffed)
 		dat += "<tr><td><A href='?src=\ref[src];item=[slot_legcuffed]'>Legcuffed</A></td></tr>"
+	if(!slot_w_uniform && !slot_wear_suit)
+		dat += "<tr><td><B>Underwear:</B> <A href='?src=\ref[src];underwear=remove'>Remove</A></td></tr>"
 
 	dat += {"</table>
 	<A href='?src=\ref[user];mach_close=mob\ref[src]'>Close</A>
@@ -318,6 +320,11 @@
 			if(slot in check_obscured_slots())
 				usr << "<span class='warning'>You can't reach that! Something is covering it.</span>"
 				return
+
+		if(href_list["underwear"])
+			usr.visible_message("<span class='warning'>[usr] attempts to take off [src]'s underwear.</span>","<span class='notice'>You attempt to take off [src]'s underwear...</span>")
+			if(do_after(usr, POCKET_STRIP_DELAY, needhand = 1))
+				src.removeunder()
 
 		if(href_list["pockets"])
 			var/pocket_side = href_list["pockets"]
@@ -834,6 +841,14 @@
 	else
 		if(..())
 			unEquip(I)
+
+mob/living/carbon/human/proc/removeunder()
+	set name = "Remove underwear"
+	set category = "IC"
+	underwear = "Nude"
+	undershirt = "Nude"
+	socks = "Nude"
+	update_body()
 
 /mob/living/carbon/human/stripPanelUnequip(obj/item/what, mob/living/carbon/human/who, where)
 	if(what.flags & NODROP)
