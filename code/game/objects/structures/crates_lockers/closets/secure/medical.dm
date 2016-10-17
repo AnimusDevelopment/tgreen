@@ -63,6 +63,7 @@
 /obj/structure/closet/secure_closet/medical4
 	name = "Medical kits"
 	icon_state = "med"
+	req_access = list(access_medical)
 
 /obj/structure/closet/secure_closet/medical4/New()
 	..()
