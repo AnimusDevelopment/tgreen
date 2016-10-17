@@ -630,6 +630,7 @@
 	var/realProc
 	var/cooldownMax = 60
 	var/cooldown
+	var/activated = FALSE
 
 /obj/item/weapon/relic/New()
 	icon_state = pick("shock_kit","armor-igniter-analyzer","infra-igniter0","infra-igniter1","radio-multitool","prox-radio1","radio-radio","timer-multitool0","radio-igniter-tank")
@@ -656,6 +657,12 @@
 				cooldown = FALSE
 	else
 		user << "<span class='notice'>You aren't quite sure what to do with this, yet.</span>"
+/obj/item/weapon/relic/dropped(mob/user as mob)
+	..()
+	if(activated)
+		activated=FALSE
+		user<<"<span class='notice'>[src] softly beeps.</span>"
+
 
 //////////////// RELIC PROCS /////////////////////////////
 
@@ -721,8 +728,10 @@
 
 /obj/item/weapon/relic/proc/explode(var/mob/user)
 	user << "<span class='danger'>[src] begins to heat up!</span>"
+	activated=TRUE
 	spawn(rand(35,100))
-		if(src.loc == user)
+		if(src.loc == user&&activated)
+			activated=FALSE
 			visible_message("<span class='notice'>The [src]'s top opens, releasing a powerful blast!</span>")
 			explosion(user.loc, -1, rand(1,5), rand(1,5), rand(1,5), rand(1,5), flame_range = 2)
 			warn_admins(user, "Explosion")
@@ -730,14 +739,17 @@
 
 /obj/item/weapon/relic/proc/teleport(var/mob/user)
 	user << "<span class='notice'>The [src] begins to vibrate!</span>"
+	activated=TRUE
 	spawn(rand(10,30))
-		var/turf/userturf = get_turf(user)
-		if(src.loc == user && userturf.z != ZLEVEL_CENTCOM) //Because Nuke Ops bringing this back on their shuttle, then looting the ERT area is 2fun4you!
-			visible_message("<span class='notice'>The [src] twists and bends, relocating itself!</span>")
-			throwSmoke(userturf)
-			do_teleport(user, userturf, 8, asoundin = 'sound/effects/phasein.ogg')
-			throwSmoke(get_turf(user))
-			warn_admins(user, "Teleport", 0)
+		if(activated)
+			activated=FALSE
+			var/turf/userturf = get_turf(user)
+			if(src.loc == user && userturf.z != ZLEVEL_CENTCOM) //Because Nuke Ops bringing this back on their shuttle, then looting the ERT area is 2fun4you!
+				visible_message("<span class='notice'>The [src] twists and bends, relocating itself!</span>")
+				throwSmoke(userturf)
+				do_teleport(user, userturf, 8, asoundin = 'sound/effects/phasein.ogg')
+				throwSmoke(get_turf(user))
+				warn_admins(user, "Teleport", 0)
 
 //Admin Warning proc for relics
 /obj/item/weapon/relic/proc/warn_admins(var/mob/user, var/RelicType, var/priority = 1)

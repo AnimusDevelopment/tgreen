@@ -200,6 +200,12 @@
 	required_reagents = list("chlorine" = 1, "fluorine" = 1, "aluminium" = 1, "potass_iodide" = 1, "oil" = 1)
 	result_amount = 5
 
+/datum/chemical_reaction/hyronalin
+	name="Hyronalin"
+	id="hyronalin"
+	result="hyronalin"
+	required_reagents=list("anti_toxin"=1,"radium"=1)
+	result_amount=2
 
 /datum/chemical_reaction/arithrazine
 	name = "Arithrazine"
