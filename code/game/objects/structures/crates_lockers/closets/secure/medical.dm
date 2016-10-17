@@ -60,6 +60,21 @@
 	new /obj/item/clothing/glasses/hud/health(src)
 	return
 
+/obj/structure/closet/secure_closet/medical4
+	name = "Medical kits"
+	icon_state = "med"
+
+/obj/structure/closet/secure_closet/medical4/New()
+	..()
+	new /obj/item/weapon/storage/firstaid/fire(src)
+	new /obj/item/weapon/storage/firstaid/fire(src)
+	new /obj/item/weapon/storage/firstaid/toxin(src)
+	new /obj/item/weapon/storage/firstaid/toxin(src)
+	new /obj/item/weapon/storage/firstaid/brute(src)
+	new /obj/item/weapon/storage/firstaid/brute(src)
+	new /obj/item/weapon/storage/firstaid/o2(src)
+	new /obj/item/weapon/storage/firstaid/o2(src)
+
 /obj/structure/closet/secure_closet/CMO
 	name = "\proper chief medical officer's locker"
 	req_access = list(access_cmo)
