@@ -11,7 +11,7 @@
 	config_tag = "traitor"
 	antag_flag = BE_TRAITOR
 	restricted_jobs = list("Cyborg", "AI") //They are part of the AI if he is traitor so are they, they use to get double chances
-	protected_jobs = list("Security Officer", "Warden", "Head of Security", "Captain")//AI", Currently out of the list as malf does not work for shit
+	protected_jobs = list("Security Officer", "Warden", "Head of Security", "Captain", "Detective")//AI", Currently out of the list as malf does not work for shit
 	required_players = 0
 	required_enemies = 1
 	recommended_enemies = 4
@@ -22,8 +22,8 @@
 
 
 /datum/game_mode/traitor/announce()
-	world << "<B>Текущий игровой режим - traitor!</B>"
-	world << "<B>Среди персонала станции замечены предатели! Не дайте им выполнить их задани&#255;.</B>"
+	world << "<B>Г’ГҐГЄГіГ№ГЁГ© ГЁГЈГ°Г®ГўГ®Г© Г°ГҐГ¦ГЁГ¬ - traitor!</B>"
+	world << "<B>Г‘Г°ГҐГ¤ГЁ ГЇГҐГ°Г±Г®Г­Г Г«Г  Г±ГІГ Г­Г¶ГЁГЁ Г§Г Г¬ГҐГ·ГҐГ­Г» ГЇГ°ГҐГ¤Г ГІГҐГ«ГЁ! ГЌГҐ Г¤Г Г©ГІГҐ ГЁГ¬ ГўГ»ГЇГ®Г«Г­ГЁГІГј ГЁГµ Г§Г Г¤Г Г­ГЁ&#255;.</B>"
 
 
 /datum/game_mode/traitor/pre_setup()
@@ -166,10 +166,10 @@
 
 
 /datum/game_mode/proc/greet_traitor(var/datum/mind/traitor)
-	traitor.current << "<BR><FONT color='red'>¤ Вы предатель!</B><FONT>"
+	traitor.current << "<BR><FONT color='red'>В¤ Г‚Г» ГЇГ°ГҐГ¤Г ГІГҐГ«Гј!</B><FONT>"
 	var/obj_count = 1
 	for(var/datum/objective/objective in traitor.objectives)
-		traitor.current << "<B>Задание #[obj_count]</B>: [objective.explanation_text]"
+		traitor.current << "<B>Г‡Г Г¤Г Г­ГЁГҐ #[obj_count]</B>: [objective.explanation_text]"
 		obj_count++
 	return
 
@@ -187,30 +187,30 @@
 	return//Traitors will be checked as part of check_extra_completion. Leaving this here as a reminder.
 
 /proc/give_codewords(mob/living/traitor_mob)
-	traitor_mob << "<B>¤ Синдикат дал вам информацию о том, как св&#255;затьс&#255; с другими агентами:</B>"
-	traitor_mob << "<B>¤ Кодовые слова</B>: <span class='danger'>[syndicate_code_phrase]</span>"
-//	traitor_mob << "<B>Ответ на кодовую фразу</B>: <span class='danger'>[syndicate_code_response]</span>"
+	traitor_mob << "<B>В¤ Г‘ГЁГ­Г¤ГЁГЄГ ГІ Г¤Г Г« ГўГ Г¬ ГЁГ­ГґГ®Г°Г¬Г Г¶ГЁГѕ Г® ГІГ®Г¬, ГЄГ ГЄ Г±Гў&#255;Г§Г ГІГјГ±&#255; Г± Г¤Г°ГіГЈГЁГ¬ГЁ Г ГЈГҐГ­ГІГ Г¬ГЁ:</B>"
+	traitor_mob << "<B>В¤ ГЉГ®Г¤Г®ГўГ»ГҐ Г±Г«Г®ГўГ </B>: <span class='danger'>[syndicate_code_phrase]</span>"
+//	traitor_mob << "<B>ГЋГІГўГҐГІ Г­Г  ГЄГ®Г¤Г®ГўГіГѕ ГґГ°Г Г§Гі</B>: <span class='danger'>[syndicate_code_response]</span>"
 
-	traitor_mob.mind.store_memory("<b>Кодовые слова</b>: [syndicate_code_phrase]")
-//	traitor_mob.mind.store_memory("<b>Ответ на кодовую фразу</b>: [syndicate_code_response]")
+	traitor_mob.mind.store_memory("<b>ГЉГ®Г¤Г®ГўГ»ГҐ Г±Г«Г®ГўГ </b>: [syndicate_code_phrase]")
+//	traitor_mob.mind.store_memory("<b>ГЋГІГўГҐГІ Г­Г  ГЄГ®Г¤Г®ГўГіГѕ ГґГ°Г Г§Гі</b>: [syndicate_code_response]")
 
-	traitor_mob << "¤ Используйте их с умом, ведь каждый может быть потенциальным предателем, как и вы."
+	traitor_mob << "В¤ Г€Г±ГЇГ®Г«ГјГ§ГіГ©ГІГҐ ГЁГµ Г± ГіГ¬Г®Г¬, ГўГҐГ¤Гј ГЄГ Г¦Г¤Г»Г© Г¬Г®Г¦ГҐГІ ГЎГ»ГІГј ГЇГ®ГІГҐГ­Г¶ГЁГ Г«ГјГ­Г»Г¬ ГЇГ°ГҐГ¤Г ГІГҐГ«ГҐГ¬, ГЄГ ГЄ ГЁ ГўГ»."
 
 
 /datum/game_mode/proc/add_law_zero(mob/living/silicon/ai/killer)
-	var/law = "Выполните ваши задани&#255; любой ценой."
-	var/law_borg = "Выполните задани&#255; вашего ИИ любой ценой."
-	killer << "¤ Ваши законы были изменены!</b>"
+	var/law = "Г‚Г»ГЇГ®Г«Г­ГЁГІГҐ ГўГ ГёГЁ Г§Г Г¤Г Г­ГЁ&#255; Г«ГѕГЎГ®Г© Г¶ГҐГ­Г®Г©."
+	var/law_borg = "Г‚Г»ГЇГ®Г«Г­ГЁГІГҐ Г§Г Г¤Г Г­ГЁ&#255; ГўГ ГёГҐГЈГ® Г€Г€ Г«ГѕГЎГ®Г© Г¶ГҐГ­Г®Г©."
+	killer << "В¤ Г‚Г ГёГЁ Г§Г ГЄГ®Г­Г» ГЎГ»Г«ГЁ ГЁГ§Г¬ГҐГ­ГҐГ­Г»!</b>"
 	killer.set_zeroth_law(law, law_borg)
-	killer << "Новый закон: 0. [law]"
+	killer << "ГЌГ®ГўГ»Г© Г§Г ГЄГ®Г­: 0. [law]"
 	give_codewords(killer)
 	killer.set_syndie_radio()
-	killer << "Ваш радио-модуль был улучшен. Используйте :t чтобы общатьс&#255; по зашифрованному каналу с другими агентами Синдиката!"
+	killer << "Г‚Г Гё Г°Г Г¤ГЁГ®-Г¬Г®Г¤ГіГ«Гј ГЎГ»Г« ГіГ«ГіГ·ГёГҐГ­. Г€Г±ГЇГ®Г«ГјГ§ГіГ©ГІГҐ :t Г·ГІГ®ГЎГ» Г®ГЎГ№Г ГІГјГ±&#255; ГЇГ® Г§Г ГёГЁГґГ°Г®ГўГ Г­Г­Г®Г¬Гі ГЄГ Г­Г Г«Гі Г± Г¤Г°ГіГЈГЁГ¬ГЁ Г ГЈГҐГ­ГІГ Г¬ГЁ Г‘ГЁГ­Г¤ГЁГЄГ ГІГ !"
 
 
 /datum/game_mode/proc/auto_declare_completion_traitor()
 	if(traitors.len)
-		var/text = "<br><font size=3><b>Предател&#255;ми были:</b></font>"
+		var/text = "<br><font size=3><b>ГЏГ°ГҐГ¤Г ГІГҐГ«&#255;Г¬ГЁ ГЎГ»Г«ГЁ:</b></font>"
 		for(var/datum/mind/traitor in traitors)
 			var/traitorwin = 1
 
@@ -230,29 +230,29 @@
 				var/count = 1
 				for(var/datum/objective/objective in traitor.objectives)
 					if(objective.check_completion())
-						objectives += "<br><B>Задание #[count]</B>: [objective.explanation_text] <font color='green'><B>Успех!</B></font>"
+						objectives += "<br><B>Г‡Г Г¤Г Г­ГЁГҐ #[count]</B>: [objective.explanation_text] <font color='green'><B>Г“Г±ГЇГҐГµ!</B></font>"
 					else
-						objectives += "<br><B>Задание #[count]</B>: [objective.explanation_text] <font color='red'>Провал.</font>"
+						objectives += "<br><B>Г‡Г Г¤Г Г­ГЁГҐ #[count]</B>: [objective.explanation_text] <font color='red'>ГЏГ°Г®ГўГ Г«.</font>"
 						traitorwin = 0
 					count++
 
 			if(uplink_true)
-				text += " (использовал [TC_uses] телекристаллов) [purchases]"
+				text += " (ГЁГ±ГЇГ®Г«ГјГ§Г®ГўГ Г« [TC_uses] ГІГҐГ«ГҐГЄГ°ГЁГ±ГІГ Г«Г«Г®Гў) [purchases]"
 				if(((TC_uses==0)||(TC_uses==20 && findtext(purchases,"syndballoon",1,0))) && traitorwin)
 					text += "<BIG><IMG CLASS=icon SRC=\ref['icons/BadAss.dmi'] ICONSTATE='badass'></BIG>"
 
 			text += objectives
 
 			if(traitorwin)
-				text += "<br><font color='green'><B>Предатель успешно выполнил все свои задани&#255;!</B></font>"
+				text += "<br><font color='green'><B>ГЏГ°ГҐГ¤Г ГІГҐГ«Гј ГіГ±ГЇГҐГёГ­Г® ГўГ»ГЇГ®Г«Г­ГЁГ« ГўГ±ГҐ Г±ГўГ®ГЁ Г§Г Г¤Г Г­ГЁ&#255;!</B></font>"
 			else
-				text += "<br><font color='red'><B>Предатель провалил свою миссию.</B></font>"
+				text += "<br><font color='red'><B>ГЏГ°ГҐГ¤Г ГІГҐГ«Гј ГЇГ°Г®ГўГ Г«ГЁГ« Г±ГўГ®Гѕ Г¬ГЁГ±Г±ГЁГѕ.</B></font>"
 
 			text += "<br>"
 
 		world << text
-//		text += "<br><b>Кодова&#255; фраза:</b> <font color='red'>[syndicate_code_phrase]</font><br>\
-//		<b>Ответ на кодовую фразу:</b> <font color='red'>[syndicate_code_response]</font><br>"
+//		text += "<br><b>ГЉГ®Г¤Г®ГўГ &#255; ГґГ°Г Г§Г :</b> <font color='red'>[syndicate_code_phrase]</font><br>\
+//		<b>ГЋГІГўГҐГІ Г­Г  ГЄГ®Г¤Г®ГўГіГѕ ГґГ°Г Г§Гі:</b> <font color='red'>[syndicate_code_response]</font><br>"
 
 
 	return 1
@@ -264,7 +264,7 @@
 	. = 1
 	if (traitor_mob.mind)
 		if (traitor_mob.mind.assigned_role == "Clown")
-			traitor_mob << "Професси&#255; клоуна была лишь прикрытием, чтобы проникнуть на станцию. Теперь вы можете не притвор&#255;тс&#255; и пользоватьс&#255; оружием без вреда дл&#255; себ&#255;."
+			traitor_mob << "ГЏГ°Г®ГґГҐГ±Г±ГЁ&#255; ГЄГ«Г®ГіГ­Г  ГЎГ»Г«Г  Г«ГЁГёГј ГЇГ°ГЁГЄГ°Г»ГІГЁГҐГ¬, Г·ГІГ®ГЎГ» ГЇГ°Г®Г­ГЁГЄГ­ГіГІГј Г­Г  Г±ГІГ Г­Г¶ГЁГѕ. Г’ГҐГЇГҐГ°Гј ГўГ» Г¬Г®Г¦ГҐГІГҐ Г­ГҐ ГЇГ°ГЁГІГўГ®Г°&#255;ГІГ±&#255; ГЁ ГЇГ®Г«ГјГ§Г®ГўГ ГІГјГ±&#255; Г®Г°ГіГ¦ГЁГҐГ¬ ГЎГҐГ§ ГўГ°ГҐГ¤Г  Г¤Г«&#255; Г±ГҐГЎ&#255;."
 			traitor_mob.dna.remove_mutation(CLOWNMUT)
 
 	// find a radio! toolbox(es), backpack, belt, headset
@@ -274,7 +274,7 @@
 		R = locate(/obj/item/device/radio) in traitor_mob.contents
 
 	if (!R)
-		traitor_mob << "К сожалению, Синдикат не смог доставить вам радио."
+		traitor_mob << "ГЉ Г±Г®Г¦Г Г«ГҐГ­ГЁГѕ, Г‘ГЁГ­Г¤ГЁГЄГ ГІ Г­ГҐ Г±Г¬Г®ГЈ Г¤Г®Г±ГІГ ГўГЁГІГј ГўГ Г¬ Г°Г Г¤ГЁГ®."
 		. = 0
 	else
 		if (istype(R, /obj/item/device/radio))
@@ -294,8 +294,8 @@
 			target_radio.hidden_uplink = T
 			T.uplink_owner = "[traitor_mob.key]"
 			target_radio.traitor_frequency = freq
-			traitor_mob << "Синдикат запихнул магазин игрушек в ваш наушник. Смените частоту на [format_frequency(freq)], чтобы открыть тёмную сторону вашего наушника."
-			traitor_mob.mind.store_memory("<B>Частота:</B> [format_frequency(freq)] ([R.name] [loc]).")
+			traitor_mob << "Г‘ГЁГ­Г¤ГЁГЄГ ГІ Г§Г ГЇГЁГµГ­ГіГ« Г¬Г ГЈГ Г§ГЁГ­ ГЁГЈГ°ГіГёГҐГЄ Гў ГўГ Гё Г­Г ГіГёГ­ГЁГЄ. Г‘Г¬ГҐГ­ГЁГІГҐ Г·Г Г±ГІГ®ГІГі Г­Г  [format_frequency(freq)], Г·ГІГ®ГЎГ» Г®ГІГЄГ°Г»ГІГј ГІВёГ¬Г­ГіГѕ Г±ГІГ®Г°Г®Г­Гі ГўГ ГёГҐГЈГ® Г­Г ГіГёГ­ГЁГЄГ ."
+			traitor_mob.mind.store_memory("<B>Г—Г Г±ГІГ®ГІГ :</B> [format_frequency(freq)] ([R.name] [loc]).")
 		else if (istype(R, /obj/item/device/pda))
 			// generate a passcode if the uplink is hidden in a PDA
 			var/pda_pass = "[rand(100,999)] [pick("Alpha","Bravo","Delta","Omega")]"
@@ -306,8 +306,8 @@
 			var/obj/item/device/pda/P = R
 			P.lock_code = pda_pass
 
-			traitor_mob << "<BR>Синдикат запихнул магазин игрушек в ваш ПДА. Просто введите \"[pda_pass]\" в меню смены рингтона, чтобы открыть тёмную сторону вашего ПДА."
-			traitor_mob.mind.store_memory("<B>Пароль от аплинка:</B> [pda_pass] ([R.name]).")
+			traitor_mob << "<BR>Г‘ГЁГ­Г¤ГЁГЄГ ГІ Г§Г ГЇГЁГµГ­ГіГ« Г¬Г ГЈГ Г§ГЁГ­ ГЁГЈГ°ГіГёГҐГЄ Гў ГўГ Гё ГЏГ„ГЂ. ГЏГ°Г®Г±ГІГ® ГўГўГҐГ¤ГЁГІГҐ \"[pda_pass]\" Гў Г¬ГҐГ­Гѕ Г±Г¬ГҐГ­Г» Г°ГЁГ­ГЈГІГ®Г­Г , Г·ГІГ®ГЎГ» Г®ГІГЄГ°Г»ГІГј ГІВёГ¬Г­ГіГѕ Г±ГІГ®Г°Г®Г­Гі ГўГ ГёГҐГЈГ® ГЏГ„ГЂ."
+			traitor_mob.mind.store_memory("<B>ГЏГ Г°Г®Г«Гј Г®ГІ Г ГЇГ«ГЁГ­ГЄГ :</B> [pda_pass] ([R.name]).")
 	if(!safety)//If they are not a rev. Can be added on to.
 		give_codewords(traitor_mob)
 
@@ -350,5 +350,5 @@
 	var/equipped_slot = mob.equip_in_one_of_slots(folder, slots)
 	if (equipped_slot)
 		where = "In your [equipped_slot]"
-	mob << "<BR><BR><span class='info'>[where] хран&#255;тс&#255; <b>секретные документы</b> которые хотели бы заполучить другие агенты Синдиката. Вы можете договоритс&#255; с ними, дабы обмен&#255;тс&#255; на вещь, котора&#255; будет вам нужна. Будьте осторожны, никто не знает, что у них на уме.</span><BR>"
+	mob << "<BR><BR><span class='info'>[where] ГµГ°Г Г­&#255;ГІГ±&#255; <b>Г±ГҐГЄГ°ГҐГІГ­Г»ГҐ Г¤Г®ГЄГіГ¬ГҐГ­ГІГ»</b> ГЄГ®ГІГ®Г°Г»ГҐ ГµГ®ГІГҐГ«ГЁ ГЎГ» Г§Г ГЇГ®Г«ГіГ·ГЁГІГј Г¤Г°ГіГЈГЁГҐ Г ГЈГҐГ­ГІГ» Г‘ГЁГ­Г¤ГЁГЄГ ГІГ . Г‚Г» Г¬Г®Г¦ГҐГІГҐ Г¤Г®ГЈГ®ГўГ®Г°ГЁГІГ±&#255; Г± Г­ГЁГ¬ГЁ, Г¤Г ГЎГ» Г®ГЎГ¬ГҐГ­&#255;ГІГ±&#255; Г­Г  ГўГҐГ№Гј, ГЄГ®ГІГ®Г°Г &#255; ГЎГіГ¤ГҐГІ ГўГ Г¬ Г­ГіГ¦Г­Г . ГЃГіГ¤ГјГІГҐ Г®Г±ГІГ®Г°Г®Г¦Г­Г», Г­ГЁГЄГІГ® Г­ГҐ Г§Г­Г ГҐГІ, Г·ГІГ® Гі Г­ГЁГµ Г­Г  ГіГ¬ГҐ.</span><BR>"
 	mob.update_icons()
