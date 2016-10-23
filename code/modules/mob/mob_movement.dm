@@ -16,12 +16,49 @@
 
 
 /client/Northeast()
-	swap_hand()
+	var/turf/controllerlocation = locate(1, 1, usr.z)
+	var/obj/item/weapon/W = mob.get_active_hand()
+	if (istype(mob, /mob/dead/observer))
+		for(var/obj/effect/landmark/zcontroller/controller in controllerlocation)
+			if (controller.up)
+				var/turf/T = locate(usr.x, usr.y, controller.up_target)
+				mob.Move(T)
+	else if (istype(mob, /mob/living/silicon/ai))
+		AIMoveZ(UP, mob)
+	else if(isobj(mob.loc))
+		mob.loc:relaymove(mob,UP)
+	else if(istype(mob, /mob/living/carbon))
+		if (("back" in mob.vars) && istype(mob:back, /obj/item/weapon/tank/jetpack))
+			mob:back:move_z(UP, mob)
+		else if(("belt" in mob.vars) && istype(mob:belt, /obj/item/weapon/tank/jetpack))
+			mob:belt:move_z(UP, mob)
+		else if(istype(W, /obj/item/weapon/extinguisher) && istype(mob.loc, /turf/space))
+			W:move_z(UP, mob)
+		else
+			mob:swap_hand()
 	return
 
-
 /client/Southeast()
-	attack_self()
+	var/turf/controllerlocation = locate(1, 1, usr.z)
+	var/obj/item/weapon/W = mob.get_active_hand()
+	if (istype(mob, /mob/dead/observer))
+		for(var/obj/effect/landmark/zcontroller/controller in controllerlocation)
+			if (controller.down)
+				var/turf/T = locate(usr.x, usr.y, controller.down_target)
+				mob.Move(T)
+	else if (istype(mob, /mob/living/silicon/ai))
+		AIMoveZ(DOWN, mob)
+	else if(isobj(mob.loc))
+		mob.loc:relaymove(mob,DOWN)
+	else if(istype(mob, /mob/living/carbon))
+		if (("back" in mob.vars) && istype(mob:back, /obj/item/weapon/tank/jetpack))
+			mob:back:move_z(DOWN, mob)
+		else if(("belt" in mob.vars) && istype(mob:belt, /obj/item/weapon/tank/jetpack))
+			mob:belt:move_z(DOWN, mob)
+		else if(istype(W, /obj/item/weapon/extinguisher) && istype(mob.loc, /turf/space))
+			W:move_z(DOWN, mob)
+		else if(W)
+			W.attack_self(mob)
 	return
 
 

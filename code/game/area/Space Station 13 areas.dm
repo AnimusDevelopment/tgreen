@@ -641,7 +641,7 @@ proc/process_ghost_teleport_locs()
 /area/bummaints
 	name = "Bum Maintenance"
 	icon_state = "Sleep"
-
+	has_gravity = 1
 
 
 

@@ -14,6 +14,7 @@
 
 // BEGIN_INCLUDE
 #include "_maps\metastation.dm"
+#include "_maps\map_files\MetaStation\z8.dmm"
 #include "code\_compile_options.dm"
 #include "code\closing_credits.dm"
 #include "code\hub.dm"
@@ -1291,6 +1292,12 @@
 #include "code\modules\mob\new_player\new_player.dm"
 #include "code\modules\mob\new_player\preferences_setup.dm"
 #include "code\modules\mob\new_player\sprite_accessories.dm"
+#include "code\modules\multiz\controller.dm"
+#include "code\modules\multiz\disposal.dm"
+#include "code\modules\multiz\movement.dm"
+#include "code\modules\multiz\pipes.dm"
+#include "code\modules\multiz\structures.dm"
+#include "code\modules\multiz\turf.dm"
 #include "code\modules\nano\_JSON.dm"
 #include "code\modules\nano\JSON Reader.dm"
 #include "code\modules\nano\JSON Writer.dm"
