@@ -14,7 +14,6 @@
 
 // BEGIN_INCLUDE
 #include "_maps\metastation.dm"
-#include "_maps\map_files\MetaStation\z8.dmm"
 #include "code\_compile_options.dm"
 #include "code\closing_credits.dm"
 #include "code\hub.dm"

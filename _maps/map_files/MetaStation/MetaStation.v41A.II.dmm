@@ -6776,7 +6776,7 @@
 "cAp" = (/obj/structure/table,/obj/item/weapon/storage/toolbox/mechanical,/turf/simulated/floor/plating{icon_state = "warnplate"; dir = 9},/area/bummaints)
 "cAq" = (/obj/effect/decal/cleanable/vomit,/obj/machinery/light/small{dir = 1},/turf/simulated/floor/plasteel{icon_state = "floorgrime"},/area/bummaints)
 "cAr" = (/obj/multiz/ladder,/turf/simulated/floor/plasteel{icon_state = "floorgrime"},/area/bummaints)
-"cAs" = (/turf/simulated/floor/plating,/area/bummaints)
+"cAs" = (/obj/structure/lattice/catwalk,/turf/simulated/floor/open,/area/bummaints)
 "cAt" = (/obj/item/seeds/towermycelium,/obj/machinery/light/small{dir = 1},/turf/simulated/floor/wood{tag = "icon-wood-broken5"; icon_state = "wood-broken5"},/area/bummaints)
 "cAu" = (/obj/machinery/biogenerator,/turf/simulated/floor/plating{tag = "icon-platingdmg1"; icon_state = "platingdmg1"},/area/bummaints)
 "cAv" = (/obj/structure/stool/bed,/obj/item/weapon/bedsheet/black,/obj/effect/decal/cleanable/vomit/old,/turf/simulated/floor/plating{icon_state = "warnplate"; dir = 6},/area/maintenance/medbay_maint)

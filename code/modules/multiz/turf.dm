@@ -20,6 +20,9 @@
 					if(!getbelow())
 						return
 				if(AM)
+					if (istype(AM, /obj/structure/lattice))
+						return
+
 					var/area/areacheck = get_area(src)
 					var/blocked = 0
 					for(var/atom/A in floorbelow.contents)
@@ -40,7 +43,8 @@
 							//dont break here, since we still need to be sure that it isnt blocked
 
 					if (!blocked && !(areacheck.name == "Space"))
-						if(AM.Move(floorbelow))
+						AM.Move(floorbelow)
+						if(locate(AM) in floorbelow)
 							if ( istype(AM, /mob/living/carbon/human))
 								if(AM:back && istype(AM:back, /obj/item/weapon/tank/jetpack))
 									return
@@ -52,7 +56,7 @@
 									H.apply_damage(rand(0,damage), BRUTE, "r_leg")
 									H.apply_damage(rand(2,damage), BRUTE, "l_foot")
 									H.apply_damage(rand(2,damage), BRUTE, "r_foot")
-									H:weakened = max(H:weakened,2)
+									H:weakened = max(H:weakened,3)
 									H:updatehealth()
 		return ..()
 
@@ -124,3 +128,12 @@
 				user << "<span class='warning'>You need one floor tile to build a floor!</span>"
 		else
 			user << "<span class='warning'>The plating is going to need some support! Place metal rods first.</span>"
+	if(istype(C, /obj/item/weapon/wirecutters))
+		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
+		if(L)
+			L.attackby(C, user)
+
+	if(istype(C, /obj/item/weapon/weldingtool))
+		var/obj/structure/lattice/catwalk/W = locate(/obj/structure/lattice/catwalk, src)
+		if(W)
+			W.attackby(C, user)
