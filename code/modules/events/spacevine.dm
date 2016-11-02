@@ -3,7 +3,6 @@
 	typepath = /datum/round_event/spacevine
 	weight = 15
 	max_occurrences = 3
-	minimal_players = 7
 
 /datum/round_event/spacevine/start()
 	var/list/turfs = list() //list of all the empty floor turfs in the hallway areas
@@ -733,7 +732,21 @@
 	name = "black"
 	hue = "#000000"
 	quality = MINOR_NEGATIVE
-	var/list/pseudo_emoutes = list("<big>Spacevine looks memetic.</big>", "Spacevine looks lonely.", "Spacevine looks sad.", "Spacevine looks happy.", "Spacevine looks like biomass.", "Spacevine smells like beans.", "Spacevine playfully waving it's leaf.", "Spacevine wants to get into space.", "Spacevine isn't a catastrophe, I promise.", "Spacevine wouldn't drop sapling for sure.", "Spacevine can't bash anybody in head with fire extinguisher.", "Spacevine explains something on leaves. You are unable to understand it.", "Spacevine breaths.", "Spacevine has it's r_sprout missing.", "Spacevine praises our lord Singulo.", "Spacevine dispirit by sandboxes.", "Spacevine only wants your LOVE.", "Spacevine rustles in the nonexistent wind.", "Spacevine does nothing.", "Spacevine goes to the dark side.", "Spacevine tries to clung to the ceiling, but fails.", "Spacevine tries to drill space.", "Spacevine reminds you about something called 'hentai'.", "Spacevine wouldn't cooperate with other spacevines, would it?.", "Spacevine looks like a net, that you just found.", "Spacevine wants to color itself into yellow and blue, but unable to do it.", "Spacevine wants to color itself into red, white and blue, but unable to do it.", "Spacevine wants to color itself into colors of freedom, but unable to do it.", "Spacevine looks annoyng.", "Spacevine someday would be big enogh to orbit stars.")
+	var/list/pseudo_emoutes = list( "<big>Spacevine looks memetic.</big>", "Spacevine looks lonely.", "Spacevine looks sad.", "Spacevine looks happy.", "Spacevine looks like biomass.", \
+									"Spacevine smells like beans.", "Spacevine playfully waving it's leaf.", "Spacevine wants to get into space.", \
+									"Spacevine isn't a catastrophe, I promise.", "Spacevine wouldn't drop sapling for sure.", \
+									"Spacevine can't bash anybody in head with fire extinguisher.", "Spacevine explains something on leaves. You are unable to understand it.", \
+									"Spacevine breaths.", "Spacevine has it's r_sprout missing.", "Spacevine praises our lord Singulo.", "Spacevine dispirit by sandboxes.", \
+									"Spacevine only wants your LOVE.", "Spacevine rustles in the nonexistent wind.", "Spacevine does nothing.", "Spacevine goes to the dark side.", \
+									"Spacevine tries to clung to the ceiling, but fails.", "Spacevine tries to drill space.", "Spacevine reminds you about something called 'hentai'.", \
+									"Spacevine wouldn't cooperate with other spacevines, would it?.", "Spacevine looks like a net, that you just found.", \
+									"Spacevine wants to color itself into yellow and blue, but unable to do it.", \
+									"Spacevine wants to color itself into red, white and blue, but unable to do it.", \
+									"Spacevine wants to color itself into colors of freedom, but unable to do it.", "Spacevine looks annoyng.", \
+									"Spacevine someday would be big enogh to orbit stars.", "Spacevine whants to know why it has veen created.", \
+									"Spacevine doesn't like admiral Nose.", "Spacevine is a living being to!", "Spacevine is aggressive to the naked bald mens.", \
+									"Spacevine isn't product of creationism.", "Spacevine is product of evolution.",\
+									"If spacevine was a spaceman, would you be a griefvine?")
 
 /datum/spacevine_mutation/RP/process_mutation(obj/effect/spacevine/holder)
 	if(prob(5))
