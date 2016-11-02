@@ -972,9 +972,9 @@ window "Telecomms IDE"
 		right-click = false
 		saved-params = "is-checked"
 		on-size = ""
-		text = "Clear Memory"
+		text = "Reset Server"
 		image = ""
-		command = "tcsclearmem"
+		command = "tcsclear"
 		is-flat = false
 		stretch = false
 		is-checked = false

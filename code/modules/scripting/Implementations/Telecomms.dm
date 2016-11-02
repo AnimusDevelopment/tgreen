@@ -33,7 +33,13 @@ var/list/allowed_custom_spans = list(SPAN_ROBOT,SPAN_YELL,SPAN_ITALICS,SPAN_SANS
 		for(var/n_Interpreter/TCS_Interpreter/interpreter in interpreters)
 			interpreter.GC()
 
-
+	/* -- Kill all launched interpreters -- */
+	proc/Kill_Processes()
+	{
+		for(var/n_Interpreter/TCS_Interpreter/interpreter in interpreters)
+			interpreter.GC()
+		interpreters=list()
+	}
 	/* -- Compile a raw block of text -- */
 
 	proc/Compile(code as message)
