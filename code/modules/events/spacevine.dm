@@ -620,7 +620,7 @@
 	quality = MINOR_NEGATIVE
 	gen_conflict = list(/datum/spacevine_mutation/fast_spread)
 
-/datum/spacevine_mutation/slow_spread/on_spread(obj/effect/spacevine/holder, turf/target)
+/datum/spacevine_mutation/slow_spread/process_mutation(obj/effect/spacevine/holder)
 	return SPACEVINE_PROCESSING_GROWING_SLOW
 
 /*============||============*/
@@ -630,7 +630,7 @@
 	hue = "#000066"
 	quality = MINOR_NEGATIVE
 
-/datum/spacevine_mutation/short_lifespawn/on_spread(obj/effect/spacevine/holder, turf/target)
+/datum/spacevine_mutation/short_lifespawn/process_mutation(obj/effect/spacevine/holder)
 	return SPACEVINE_PROCESSING_SHORT_LIVING
 
 /*============||============*/
