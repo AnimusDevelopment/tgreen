@@ -135,7 +135,7 @@
 
 /datum/spacevine_mutation/bluespace/on_spread(obj/effect/spacevine/holder, turf/target)
 	if(holder.energy > 1 && !locate(/obj/effect/spacevine) in target)
-		return SPACEVINE_BEHAVIOR_FORSE_GROWTH
+		return SPACEVINE_BEHAVIOUR_FORCE_GROWTH
 
 /*============||============*/
 
@@ -143,7 +143,7 @@
 	name = "light"
 	hue = "#ffff00"
 	quality = POSITIVE
-	gen_conflict = list(/datum/spacevine_mutation/darknes_spread)
+	gen_conflict = list(/datum/spacevine_mutation/darkness_spread)
 
 /datum/spacevine_mutation/light/on_grow(obj/effect/spacevine/holder)
 	if(prob(10*severity))
@@ -189,10 +189,10 @@
 	gen_conflict = list(/datum/spacevine_mutation/dry)
 
 /datum/spacevine_mutation/fire_proof/process_temperature(obj/effect/spacevine/holder, temp, volume)
-	return SPACEVINE_BEHAVIOR_INCOMBUSTIBLE
+	return SPACEVINE_BEHAVIOUR_INCOMBUSTIBLE
 
 /datum/spacevine_mutation/fire_proof/on_hit(obj/effect/spacevine/holder, mob/hitter, obj/item/I)
-	return SPACEVINE_BEHAVIOR_INCOMBUSTIBLE
+	return SPACEVINE_BEHAVIOUR_INCOMBUSTIBLE
 
 /*============||============*/
 
@@ -350,7 +350,7 @@
 			chance = 8
 		if(prob(chance))
 			qdel(holder)
-	return SPACEVINE_BEHAVIOR_TOUGH	//they would burn by weldingtools, yey.
+	return SPACEVINE_BEHAVIOUR_TOUGH	//they would burn by weldingtools, yey.
 
 /*============||============*/
 
@@ -367,7 +367,7 @@
 				holder.reagents.add_reagent("blood", 1)
 
 /datum/spacevine_mutation/blood/on_hit(obj/effect/spacevine/holder, mob/hitter, obj/item/I)
-	return SPACEVINE_BEHAVIOR_REAGENT_PRODUCING
+	return SPACEVINE_BEHAVIOUR_REAGENT_PRODUCING
 
 /datum/spacevine_mutation/blood/on_birth(obj/effect/spacevine/holder)
 	holder.create_reagents(20)
@@ -387,10 +387,10 @@
 				holder.reagents.add_reagent("sacid", 1)
 
 /datum/spacevine_mutation/acid/on_hit(obj/effect/spacevine/holder, mob/hitter, obj/item/I)
-	return SPACEVINE_BEHAVIOR_REAGENT_PRODUCING
+	return SPACEVINE_BEHAVIOUR_REAGENT_PRODUCING
 
 /datum/spacevine_mutation/acid/on_chem(obj/effect/spacevine/holder, datum/reagent/R)
-	return SPACEVINE_BEHAVIOR_HERBICIDE_IMMUNE & SPACEVINE_BEHAVIOR_ACID_IMMUNE
+	return SPACEVINE_BEHAVIOUR_HERBICIDE_IMMUNE & SPACEVINE_BEHAVIOUR_ACID_IMMUNE
 
 /datum/spacevine_mutation/acid/on_birth(obj/effect/spacevine/holder)
 	holder.create_reagents(20)
@@ -425,7 +425,7 @@
 				holder.reagents.add_reagent("spore", 1)
 
 /datum/spacevine_mutation/spore/on_hit(obj/effect/spacevine/holder, mob/hitter, obj/item/I)
-	return SPACEVINE_BEHAVIOR_REAGENT_PRODUCING
+	return SPACEVINE_BEHAVIOUR_REAGENT_PRODUCING
 
 /datum/spacevine_mutation/spore/on_birth(obj/effect/spacevine/holder)
 	holder.create_reagents(20)
@@ -469,20 +469,20 @@
 
 /*============||============*/
 
-/datum/spacevine_mutation/darknes_spread
+/datum/spacevine_mutation/darkness_spread
 	name = "light fearing"
 	hue = "#CCCCCC"
 	quality = MINOR_NEGATIVE
 	gen_conflict = list(/datum/spacevine_mutation/light, /datum/spacevine_mutation/light_spread)
 
-/datum/spacevine_mutation/darknes_spread/on_spread(obj/effect/spacevine/holder, turf/target)
+/datum/spacevine_mutation/darkness_spread/on_spread(obj/effect/spacevine/holder, turf/target)
 	var/T = 0
 	for(var/atom/movable/light/L in target.contents)
 		T = 1
 		if(L.luminosity > 3)
-			return SPACEVINE_BEHAVIOR_INERT
+			return SPACEVINE_BEHAVIOUR_INERT
 	if(!T)	//no light only in areas with constant lighting
-		return SPACEVINE_BEHAVIOR_INERT
+		return SPACEVINE_BEHAVIOUR_INERT
 
 /*============||============*/
 
@@ -490,7 +490,7 @@
 	name = "darkness fearing"
 	hue = "#444444"
 	quality = MINOR_NEGATIVE
-	gen_conflict = list(/datum/spacevine_mutation/darknes_spread)
+	gen_conflict = list(/datum/spacevine_mutation/darkness_spread)
 
 /datum/spacevine_mutation/light_spread/on_spread(obj/effect/spacevine/holder, turf/target)
 	var/T = 1
@@ -498,7 +498,7 @@
 		if(L.luminosity <= 3)
 			T = 0
 	if(!T)
-		return SPACEVINE_BEHAVIOR_INERT
+		return SPACEVINE_BEHAVIOUR_INERT
 
 /*============||============*/
 
@@ -510,7 +510,7 @@
 /datum/spacevine_mutation/endemic/on_spread(obj/effect/spacevine/holder, turf/target)
 	var/turf/place = get_turf(holder)
 	if(target.loc != place.loc)
-		return SPACEVINE_BEHAVIOR_INERT
+		return SPACEVINE_BEHAVIOUR_INERT
 
 /*============||============*/
 
@@ -522,7 +522,7 @@
 
 /datum/spacevine_mutation/space_fearing/on_spread(obj/effect/spacevine/holder, turf/target)
 	if(istype(target, /turf/space))
-		return SPACEVINE_BEHAVIOR_INERT
+		return SPACEVINE_BEHAVIOUR_INERT
 
 /*============||============*/
 
@@ -534,9 +534,9 @@
 
 /datum/spacevine_mutation/crawling/on_spread(obj/effect/spacevine/holder, turf/target)
 	if(locate(/obj/structure/plasticflaps) in target || locate(/obj/structure/mineral_door) in target)
-		return SPACEVINE_BEHAVIOR_FORSE_GROWTH
+		return SPACEVINE_BEHAVIOUR_FORCE_GROWTH
 	else if (locate(/obj/structure/grille) in target && !locate(/obj/structure/window) in target)
-		return SPACEVINE_BEHAVIOR_FORSE_GROWTH
+		return SPACEVINE_BEHAVIOUR_FORCE_GROWTH
 
 /*============||============*/
 
@@ -577,7 +577,7 @@
 	gen_conflict = list(/datum/spacevine_mutation/fast_mutate)
 
 /datum/spacevine_mutation/no_mutate/on_spread(obj/effect/spacevine/holder, turf/target)
-	return SPACEVINE_BEHAVIOR_GEN_SATABLE
+	return SPACEVINE_BEHAVIOUR_GEN_SATABLE
 
 /*============||============*/
 
@@ -588,7 +588,7 @@
 	gen_conflict = list(/datum/spacevine_mutation/no_mutate)
 
 /datum/spacevine_mutation/fast_mutate/on_spread(obj/effect/spacevine/holder, turf/target)
-	return SPACEVINE_BEHAVIOR_GEN_MUTATIVE
+	return SPACEVINE_BEHAVIOUR_GEN_MUTATIVE
 
 /*============||============*/
 
@@ -599,7 +599,7 @@
 	gen_conflict = list(/datum/spacevine_mutation/mutation_spreading)
 
 /datum/spacevine_mutation/reverse_mutate/on_spread(obj/effect/spacevine/holder, turf/target)
-	return SPACEVINE_BEHAVIOR_GEN_REGRESSIVE
+	return SPACEVINE_BEHAVIOUR_GEN_REGRESSIVE
 
 /*============||============*/
 
@@ -657,7 +657,7 @@
 	gen_conflict = list(/datum/spacevine_mutation/woodening)
 
 /datum/spacevine_mutation/fragile/on_hit(obj/effect/spacevine/holder, mob/hitter, obj/item/I)
-	return SPACEVINE_BEHAVIOR_FRAGILE
+	return SPACEVINE_BEHAVIOUR_FRAGILE
 
 /*============||============*/
 
@@ -668,7 +668,7 @@
 	gen_conflict = list(/datum/spacevine_mutation/fire_proof, /datum/spacevine_mutation/fiery)
 
 /datum/spacevine_mutation/dry/on_hit(obj/effect/spacevine/holder, mob/hitter, obj/item/I)
-	return SPACEVINE_BEHAVIOR_IGNITABLE
+	return SPACEVINE_BEHAVIOUR_IGNITABLE
 
 /*============||============*/
 
@@ -691,10 +691,10 @@
 	gen_conflict = list(/datum/spacevine_mutation/fiery, /datum/spacevine_mutation/woodening)
 
 /datum/spacevine_mutation/glass/on_hit(obj/effect/spacevine/holder, mob/hitter, obj/item/I)
-	return SPACEVINE_BEHAVIOR_FRAGILE
+	return SPACEVINE_BEHAVIOUR_FRAGILE
 
 /datum/spacevine_mutation/glass/on_chem(obj/effect/spacevine/holder, datum/reagent/R)
-	return SPACEVINE_BEHAVIOR_INERT
+	return SPACEVINE_BEHAVIOUR_INERT
 
 /datum/spacevine_mutation/glass/on_grow(obj/effect/spacevine/holder)
 	holder.SetOpacity(0)
@@ -709,14 +709,14 @@
 	gen_conflict = list(/datum/spacevine_mutation/dry, /datum/spacevine_mutation/glass)
 
 /datum/spacevine_mutation/fiery/process_temperature(obj/effect/spacevine/holder, temp, volume)
-	return SPACEVINE_BEHAVIOR_INCOMBUSTIBLE
+	return SPACEVINE_BEHAVIOUR_INCOMBUSTIBLE
 
 /datum/spacevine_mutation/fiery/on_hit(obj/effect/spacevine/holder, mob/hitter, obj/item/I)
 	if(prob(severity) && istype(hitter))
 		var/mob/living/M = hitter
 		M.adjustFireLoss(5)
 		M << "<span class='alert'>You burn yourself on the fiery vines.</span>"
-	return SPACEVINE_BEHAVIOR_INCOMBUSTIBLE
+	return SPACEVINE_BEHAVIOUR_INCOMBUSTIBLE
 
 /datum/spacevine_mutation/fiery/on_cross(obj/effect/spacevine/holder, mob/living/crosser)
 	if(prob(severity) && istype(crosser))
@@ -725,7 +725,7 @@
 		M << "<span class='alert'>You burn yourself on the fiery vines.</span>"
 
 /datum/spacevine_mutation/fiery/on_chem(obj/effect/spacevine/holder, datum/reagent/R)
-	return SPACEVINE_BEHAVIOR_HYDROPHOBIC
+	return SPACEVINE_BEHAVIOUR_HYDROPHOBIC
 
 /*============||============*/
 //can anyone explain me why I created this?
@@ -779,12 +779,12 @@
 	var/override = 0
 	for(var/datum/spacevine_mutation/SM in mutations)
 		override |= SM.on_chem(src, R)
-	if(override & SPACEVINE_BEHAVIOR_INERT)
+	if(override & SPACEVINE_BEHAVIOUR_INERT)
 		return
-	if(istype(R, /datum/reagent/toxin/plantbgone) && !(override & SPACEVINE_BEHAVIOR_HERBICIDE_IMMUNE))
+	if(istype(R, /datum/reagent/toxin/plantbgone) && !(override & SPACEVINE_BEHAVIOUR_HERBICIDE_IMMUNE))
 		if(prob(50))
 			qdel(src)
-	else if(istype(R, /datum/reagent/water) && (override & SPACEVINE_BEHAVIOR_HYDROPHOBIC))
+	else if(istype(R, /datum/reagent/water) && (override & SPACEVINE_BEHAVIOUR_HYDROPHOBIC))
 		if(prob(75))
 			qdel(src)
 
@@ -792,7 +792,7 @@
 	var/override = 0
 	for(var/datum/spacevine_mutation/SM in mutations)
 		override |= SM.on_eat(src, eater)
-	if(!(override & SPACEVINE_BEHAVIOR_INERT))
+	if(!(override & SPACEVINE_BEHAVIOUR_INERT))
 		if(prob(10))
 			eater.say("Nom")
 		qdel(src)
@@ -807,16 +807,16 @@
 	for(var/datum/spacevine_mutation/SM in mutations)
 		override |= SM.on_hit(src, user)
 
-	if(override & SPACEVINE_BEHAVIOR_INERT)
+	if(override & SPACEVINE_BEHAVIOUR_INERT)
 		..()
 		return
 
-	if((override & SPACEVINE_BEHAVIOR_REAGENT_PRODUCING) && (W.flags & OPENCONTAINER))
+	if((override & SPACEVINE_BEHAVIOUR_REAGENT_PRODUCING) && (W.flags & OPENCONTAINER))
 		if(reagents)  //sanity
 			reagents.trans_to(W, reagents.total_volume)
 			return
 
-	if(!(override & SPACEVINE_BEHAVIOR_TOUGH))
+	if(!(override & SPACEVINE_BEHAVIOUR_TOUGH))
 		if(istype(W, /obj/item/weapon/scythe))
 			for(var/obj/effect/spacevine/B in orange(src,1))
 				if(prob(80))
@@ -828,11 +828,11 @@
 			qdel(src)
 			return
 
-		else if((override & SPACEVINE_BEHAVIOR_FRAGILE) && (W.damtype == BRUTE)) //  && (W.force > 4)
+		else if((override & SPACEVINE_BEHAVIOUR_FRAGILE) && (W.damtype == BRUTE)) //  && (W.force > 4)
 			qdel(src)
 			return
 
-	if(!(override & SPACEVINE_BEHAVIOR_INCOMBUSTIBLE))
+	if(!(override & SPACEVINE_BEHAVIOUR_INCOMBUSTIBLE))
 		if(istype(W, /obj/item/weapon/weldingtool))
 			var/obj/item/weapon/weldingtool/WT = W
 			if(WT.remove_fuel(0, user))
@@ -842,7 +842,7 @@
 				user_unbuckle_mob(user,user)
 				return
 
-		if((override & SPACEVINE_BEHAVIOR_IGNITABLE) && (W.damtype == BURN))
+		if((override & SPACEVINE_BEHAVIOUR_IGNITABLE) && (W.damtype == BURN))
 			qdel(src)
 			return
 
@@ -910,9 +910,9 @@
 		SV.mutations |= parent.mutations
 		SV.color = parent.color
 		SV.desc = parent.desc
-		if(!(override & SPACEVINE_BEHAVIOR_GEN_SATABLE))
-			if(prob(mutativness + (override & SPACEVINE_BEHAVIOR_GEN_MUTATIVE)))
-				if(override & SPACEVINE_BEHAVIOR_GEN_REGRESSIVE)
+		if(!(override & SPACEVINE_BEHAVIOUR_GEN_SATABLE))
+			if(prob(mutativness + (override & SPACEVINE_BEHAVIOUR_GEN_MUTATIVE)))
+				if(override & SPACEVINE_BEHAVIOUR_GEN_REGRESSIVE)
 					pick_n_take(SV.mutations)
 				else
 					var/datum/spacevine_mutation/newmut = pick(mutations_list)
@@ -1051,10 +1051,10 @@
 		stepturf = get_step(src,direction) //in case turf changes, to make sure no runtimes happen
 	if(!stepturf)
 		return //Yet another sanyty check
-	if(override & SPACEVINE_BEHAVIOR_INERT)
+	if(override & SPACEVINE_BEHAVIOUR_INERT)
 		return
-	if(!locate(/obj/effect/spacevine, stepturf) || (override & SPACEVINE_BEHAVIOR_FORSE_GROWTH))
-		if(stepturf.Enter(src) || (override & SPACEVINE_BEHAVIOR_FORSE_GROWTH))
+	if(!locate(/obj/effect/spacevine, stepturf) || (override & SPACEVINE_BEHAVIOUR_FORCE_GROWTH))
+		if(stepturf.Enter(src) || (override & SPACEVINE_BEHAVIOUR_FORCE_GROWTH))
 			if(master)
 				master.spawn_spacevine_piece(stepturf, src, ,override)
 
@@ -1111,5 +1111,5 @@
 	var/override = 0
 	for(var/datum/spacevine_mutation/SM in mutations)
 		override |= SM.process_temperature(src, temp, volume)
-	if(!(override & SPACEVINE_BEHAVIOR_INCOMBUSTIBLE))
+	if(!(override & SPACEVINE_BEHAVIOUR_INCOMBUSTIBLE))
 		qdel(src)
