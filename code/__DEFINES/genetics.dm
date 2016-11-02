@@ -94,7 +94,7 @@
 #define WATER_LEVEL_THIRSTY	200
 #define WATER_LEVEL_DEHYDRATED 100
 
-//spacewine behavior owerrides flags. They're prodused by mutations, so hava to do with genetics, right?
+//spacewine behavior owerrides flags. They're prodused by mutations, so have to do with genetics, right?
 #define SPACEVINE_BEHAVIOR_INERT 1              //universal. means that those vines in this situation DO NOT HAVE ANY REACTOION. oblivios, isnt it?
 //hit, temperature change and such
 #define SPACEVINE_BEHAVIOR_TOUGH 2              //wont break by sharp tools
