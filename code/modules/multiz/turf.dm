@@ -78,14 +78,6 @@
 		if(O.level == 1)
 			O.hide(0)
 
-//overwrite the attackby of space to transform it to openspace if necessary
-/turf/space/attackby(obj/item/C as obj, mob/user as mob)
-	if (istype(C, /obj/item/stack/cable_coil))
-		var/turf/simulated/floor/open/W = src.ChangeTurf(/turf/simulated/floor/open)
-		W.attackby(C, user)
-		return
-	..()
-
 /turf/simulated/floor/open/ex_act(severity)
 	// cant destroy empty space with an ordinary bomb
 	return
@@ -144,3 +136,6 @@
 		var/obj/structure/lattice/catwalk/W = locate(/obj/structure/lattice/catwalk, src)
 		if(W)
 			W.attackby(C, user)
+
+	if(istype(C, /obj/item/stack/cable_coil))
+		return ..()

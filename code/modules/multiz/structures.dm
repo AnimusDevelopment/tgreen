@@ -170,6 +170,8 @@
 			if(blocked || istype(T, /turf/simulated/wall))
 				M << "\red Something is blocking the ladder."
 			else
+				if(istype(M,/mob/living/) && M.resting)
+					return
 				M.visible_message("\blue \The [M] climbs [src.icon_state == "ladderup" ? "up" : "down"] \the [src]!", "\blue You climb [src.icon_state == "ladderup"  ? "up" : "down"] \the [src]!", "You hear some grunting, and clanging of a metal ladder being used.")
 				M.Move(target.loc)
 

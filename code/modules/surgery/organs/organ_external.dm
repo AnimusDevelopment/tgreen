@@ -109,6 +109,8 @@
 //		limb_overlay = image("icon"='icons/mob/human_parts.dmi', "icon_state"="[   //TODO: pirate legs
 	else if(owner.disabilities & HUSK)
 		limb_overlay = image("icon"='icons/mob/human_parts_new.dmi', "icon_state" = "husk_[L.name]_s", "layer"= -SPECIES_LAYER)
+	else if(owner.dna.species.id != "human")
+		limb_overlay = image("icon"='icons/mob/human_parts_new.dmi', "icon_state" = "[owner.dna.species.id]_[L.name][L.body_part == CHEST && owner.dna.species.sexes ? "_[gend]" : ""]_s", "layer"= -SPECIES_LAYER)
 	else
 		limb_overlay = image("icon"='icons/mob/human_parts_new.dmi', "icon_state" = "[skintone]_[L.name][L.body_part == CHEST ? "_[gend]" : ""]_s", "layer"= -SPECIES_LAYER)
 	return limb_overlay
