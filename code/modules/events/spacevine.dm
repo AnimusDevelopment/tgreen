@@ -135,7 +135,7 @@
 
 /datum/spacevine_mutation/bluespace/on_spread(obj/effect/spacevine/holder, turf/target)
 	if(holder.energy > 1 && !locate(/obj/effect/spacevine) in target)
-		return SPACEVINE_BEHAVIOR_FORSE_GROWH
+		return SPACEVINE_BEHAVIOR_FORSE_GROWTH
 
 /*============||============*/
 
@@ -534,9 +534,9 @@
 
 /datum/spacevine_mutation/crawling/on_spread(obj/effect/spacevine/holder, turf/target)
 	if(locate(/obj/structure/plasticflaps) in target || locate(/obj/structure/mineral_door) in target)
-		return SPACEVINE_BEHAVIOR_FORSE_GROWH
+		return SPACEVINE_BEHAVIOR_FORSE_GROWTH
 	else if (locate(/obj/structure/grille) in target && !locate(/obj/structure/window) in target)
-		return SPACEVINE_BEHAVIOR_FORSE_GROWH
+		return SPACEVINE_BEHAVIOR_FORSE_GROWTH
 
 /*============||============*/
 
@@ -1053,8 +1053,8 @@
 		return //Yet another sanyty check
 	if(override & SPACEVINE_BEHAVIOR_INERT)
 		return
-	if(!locate(/obj/effect/spacevine, stepturf) || (override & SPACEVINE_BEHAVIOR_FORSE_GROWH))
-		if(stepturf.Enter(src) || (override & SPACEVINE_BEHAVIOR_FORSE_GROWH))
+	if(!locate(/obj/effect/spacevine, stepturf) || (override & SPACEVINE_BEHAVIOR_FORSE_GROWTH))
+		if(stepturf.Enter(src) || (override & SPACEVINE_BEHAVIOR_FORSE_GROWTH))
 			if(master)
 				master.spawn_spacevine_piece(stepturf, src, ,override)
 

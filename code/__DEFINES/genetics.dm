@@ -103,7 +103,7 @@
 #define SPACEVINE_BEHAVIOR_IGNITABLE 16         //will break by any fire damege weapons
 #define SPACEVINE_BEHAVIOR_REAGENT_PRODUCING 32 //hawe harvestable reagents
 //spread
-#define SPACEVINE_BEHAVIOR_FORSE_GROWH 2        //will growh on despite blockings
+#define SPACEVINE_BEHAVIOR_FORSE_GROWTH 2        //will growh on despite blockings
 #define SPACEVINE_BEHAVIOR_GEN_SATABLE 4      //don't mutate futher
 #define SPACEVINE_BEHAVIOR_GEN_MUTATIVE 8     //have higterchanse for mutation. notice that it's also used as constant
 #define SPACEVINE_BEHAVIOR_GEN_REGRESSIVE 16  //lose mutations insted of geting them
