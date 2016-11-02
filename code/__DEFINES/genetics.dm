@@ -93,3 +93,25 @@
 #define WATER_LEVEL_NORMAL	300
 #define WATER_LEVEL_THIRSTY	200
 #define WATER_LEVEL_DEHYDRATED 100
+
+//spacewine behavior owerrides flags. They're prodused by mutations, so hava to do with genetics, right?
+#define SPACEVINE_BEHAVIOR_INERT 1              //universal. means that those vines in this situation DO NOT HAVE ANY REACTOION. oblivios, isnt it?
+//hit, temperature change and such
+#define SPACEVINE_BEHAVIOR_TOUGH 2              //wont break by sharp tools
+#define SPACEVINE_BEHAVIOR_FRAGILE 4            //will break by any brute damage weapons
+#define SPACEVINE_BEHAVIOR_INCOMBUSTIBLE 8      //wont break by weldingtools and fire
+#define SPACEVINE_BEHAVIOR_IGNITABLE 16         //will break by any fire damege weapons
+#define SPACEVINE_BEHAVIOR_REAGENT_PRODUCING 32 //hawe harvestable reagents
+//spread
+#define SPACEVINE_BEHAVIOR_FORSE_GROWH 2        //will growh on despite blockings
+#define SPACEVINE_BEHAVIOR_GEN_SATABLE 4      //don't mutate futher
+#define SPACEVINE_BEHAVIOR_GEN_MUTATIVE 8     //have higterchanse for mutation. notice that it's also used as constant
+#define SPACEVINE_BEHAVIOR_GEN_REGRESSIVE 16  //lose mutations insted of geting them
+//chems
+#define SPACEVINE_BEHAVIOR_HERBICIDE_IMMUNE 2   //wont break by herbicide
+#define SPACEVINE_BEHAVIOR_ACID_IMMUNE 4        //I think this won't work, but, anyway
+#define SPACEVINE_BEHAVIOR_HYDROPHOBIC 8        //will break by water
+//processing
+#define SPACEVINE_PROCESSING_GROWING_FAST 2     //take half the resorse to grow
+#define SPACEVINE_PROCESSING_GROWING_SLOW 4     //take twice the resorse to grow
+#define SPACEVINE_PROCESSING_SHORT_LIVING 8     //stop processing after fully grown
