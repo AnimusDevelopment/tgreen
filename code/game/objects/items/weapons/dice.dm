@@ -7,6 +7,11 @@
 	var/sides = 6
 	var/result = null
 
+/obj/item/weapon/dice/examine(mob/user)
+	..()
+	user << "The [src] has landed on [src.result]."
+
+
 /obj/item/weapon/dice/New()
 	result = rand(1, sides)
 	update_icon()
@@ -89,3 +94,38 @@
 /obj/item/weapon/dice/update_icon()
 	overlays.Cut()
 	overlays += "[src.icon_state][src.result]"
+
+/obj/item/weapon/storage/bag/dicecup
+	name = "dicecup"
+	desc = "handmade cup designed for throwing dices"
+	icon = 'icons/obj/dice.dmi'
+	icon_state = "dicecup"
+	item_state = "contsolid"
+	storage_slots = 7
+	display_contents_with_number = 0  //it does look good inside, but somewhy doesn't reset number after throw
+	slot_flags = 0
+	can_hold = list(/obj/item/weapon/dice)
+	w_class = 2
+	var/list/last_throw = list()
+	var/last_sum
+
+/obj/item/weapon/storage/bag/dicecup/afterattack(atom/target, mob/user , proximity)
+	if(isemptylist(contents))
+		..()
+		return
+	if(!proximity)
+		return
+	if(istype(target,/obj/structure/table))
+		last_throw.Cut()
+		last_sum = 0
+		for(var/obj/item/weapon/dice/D in src.contents)
+			D.loc = target.loc
+			D.diceroll()
+			last_throw += D.result
+			last_sum += D.result
+			D.pixel_x = rand(-6, 6)
+			D.pixel_y = rand(-6, 6)
+//		sortList(last_throw, /proc/cmp_numeric_asc)
+		user.visible_message("[user] has thrown dices. They got [english_list(last_throw)] as result with [last_sum] as sum.", \
+							 "<span class='notice'>You throw dices. They got [english_list(last_throw)] as result with [last_sum] as sum.</span>")
+		return

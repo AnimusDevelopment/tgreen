@@ -37,6 +37,9 @@
 		if (!target.is_open_container())
 			return
 
+	if(istype(target, /obj/effect/spacevine) && target.reagents)	//harwesting reagents from spacevine
+		return
+
 	if(ismob(target) && target.reagents && reagents.total_volume)
 		var/mob/M = target
 		var/R

@@ -254,13 +254,34 @@
 	for (var/i = 0; i < 7; i++)
 		new /obj/item/weapon/reagent_containers/pill/haloperidol(src)
 
+
+/*
+ * Dice bugs
+ */
+
 /obj/item/weapon/storage/pill_bottle/dice
 	name = "bag of dice"
 	desc = "Contains all the luck you'll ever need."
 	icon = 'icons/obj/dice.dmi'
 	icon_state = "dicebag"
 
-/obj/item/weapon/storage/pill_bottle/dice/New()
+//Yep I understand that it's end with dicebag already existing on map became empty. I just don't want bring troble of merging maps.
+
+//obj/item/weapon/storage/pill_bottle/dice/6d6
+
+/obj/item/weapon/storage/pill_bottle/dice/cubes/New()
+	..()
+	new /obj/item/weapon/dice(src)
+	new /obj/item/weapon/dice(src)
+	new /obj/item/weapon/dice(src)
+	new /obj/item/weapon/dice(src)
+	new /obj/item/weapon/dice(src)
+	new /obj/item/weapon/dice(src)
+
+
+//obj/item/weapon/storage/pill_bottle/dice/variety
+
+/obj/item/weapon/storage/pill_bottle/dice/variety/New()
 	..()
 	new /obj/item/weapon/dice/d4(src)
 	new /obj/item/weapon/dice(src)
@@ -269,4 +290,3 @@
 	new /obj/item/weapon/dice/d00(src)
 	new /obj/item/weapon/dice/d12(src)
 	new /obj/item/weapon/dice/d20(src)
-

@@ -24,3 +24,4 @@ silentenemy - Host
 darkmagov - Host
 jshepard - Host
 jammer312 - Host
+strinkor - Host

@@ -4,8 +4,12 @@
 #define Z_WEST 4
 
 var/list/cardinal = list( NORTH, SOUTH, EAST, WEST )//, UP, DOWN )
+var/list/cardinal_extension = list(UP,DOWN)
 var/list/alldirs = list(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)//, UP, DOWN)
 
+///proc/test_cardinals()
+//	for(var/dir in cardinal|cardinal_extension)
+//		world<<dir
 
 //This list contains the z-level numbers which can be accessed via space travel and the percentile chances to get there.
 //(Exceptions: extended, sandbox and nuke) -Errorage

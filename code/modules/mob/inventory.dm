@@ -57,7 +57,7 @@
 /mob/proc/put_in_l_hand(var/obj/item/W)
 	if(!put_in_hand_check(W))
 		return 0
-	if(handle_removed_arms(src) == 1)
+	if(handle_removed_arms(src) == 1 || handle_removed_arms(src) == 0)
 		drop_item()
 		return 0
 	if(!l_hand)
@@ -79,7 +79,7 @@
 /mob/proc/put_in_r_hand(var/obj/item/W)
 	if(!put_in_hand_check(W))
 		return 0
-	if(handle_removed_arms(src) == -1)
+	if(handle_removed_arms(src) == -1 || handle_removed_arms(src) == 0)
 		drop_item()
 		return 0
 	if(!r_hand)

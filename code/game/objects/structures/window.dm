@@ -393,6 +393,11 @@
 		return !density
 	return 1
 
+/obj/structure/window/BlocksAtmosAbove()
+	if(dir == SOUTHWEST || dir == SOUTHEAST || dir == NORTHWEST || dir == NORTHEAST)
+		return density
+	return 0
+
 //This proc is used to update the icons of nearby windows.
 /obj/structure/window/proc/update_nearby_icons()
 	update_icon()

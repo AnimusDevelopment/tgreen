@@ -135,6 +135,8 @@ Please contact me on #coderbus IRC. ~Carnie x
 	//Reset our hair
 	remove_overlay(HAIR_LAYER)
 	var/obj/item/organ/limb/head/H = getlimb(/obj/item/organ/limb/head)
+	if(!H)
+		return
 	if(H.state == ORGAN_REMOVED)
 		return
 	if( (disabilities & HUSK) || (head && (head.flags & BLOCKHAIR)) || (wear_mask && (wear_mask.flags & BLOCKHAIR)) )

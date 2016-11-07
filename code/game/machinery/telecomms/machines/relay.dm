@@ -25,7 +25,7 @@
 /obj/machinery/telecomms/relay/receive_information(datum/signal/signal, obj/machinery/telecomms/machine_from)
 	// Add our level and send it back
 	if(can_send(signal))
-		signal.data["level"] |= listening_level
+		signal.data["level"] |= listening_levels
 
 // Checks to see if it can send/receive.
 
@@ -68,7 +68,7 @@
 
 /obj/machinery/telecomms/relay/preset/station
 	id = "Station Relay"
-	listening_level = 1
+	listening_levels = list(1, 8)
 	autolinkers = list("s_relay")
 
 /obj/machinery/telecomms/relay/preset/telecomms

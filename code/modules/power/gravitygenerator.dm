@@ -114,6 +114,7 @@ var/const/GRAV_NEEDS_WRENCH = 3
 	var/charge_count = 100
 	var/current_overlay = null
 	var/broken_state = 0
+	var/list/affected_levels = list()
 
 /obj/machinery/gravity_generator/main/Destroy() // If we somehow get deleted, remove all of our other parts.
 	investigate_log("was destroyed!", "gravity")
@@ -351,10 +352,11 @@ var/const/GRAV_NEEDS_WRENCH = 3
 
 // Shake everyone on the z level to let them know that gravity was enagaged/disenagaged.
 /obj/machinery/gravity_generator/main/proc/shake_everyone()
-	var/turf/our_turf = get_turf(src)
+	var/turf/our_turf = get_turf(src.loc)
+	recalibrate_levels()
 	for(var/mob/M in mob_list)
 		var/turf/their_turf = get_turf(M)
-		if(their_turf.z == our_turf.z)
+		if(affected_levels.Find(their_turf.z))
 			M.update_gravity(M.mob_has_gravity())
 			if(M.client)
 				shake_camera(M, 15, 1)
@@ -369,14 +371,34 @@ var/const/GRAV_NEEDS_WRENCH = 3
 	return 0
 
 /obj/machinery/gravity_generator/main/proc/update_list()
+	recalibrate_levels()
+	if(affected_levels.len)
+		for(var/Z_level in affected_levels)
+			if(!gravity_generators["[Z_level]"])
+				gravity_generators["[Z_level]"] = list()
+			if(on)
+				gravity_generators["[Z_level]"] |= src
+			else
+				gravity_generators["[Z_level]"] -= src
+
+/obj/machinery/gravity_generator/main/proc/recalibrate_levels()
+	affected_levels.Cut()
 	var/turf/T = get_turf(src.loc)
 	if(T)
-		if(!gravity_generators["[T.z]"])
-			gravity_generators["[T.z]"] = list()
-		if(on)
-			gravity_generators["[T.z]"] |= src
-		else
-			gravity_generators["[T.z]"] -= src
+		recalibrate_level(T.z)
+
+/obj/machinery/gravity_generator/main/proc/recalibrate_level(var/Z_level)
+	if(affected_levels.Find(Z_level))
+		return
+	affected_levels |= Z_level
+	var/turf/controllerlocation = locate(1, 1, Z_level)
+	for(var/obj/effect/landmark/zcontroller/controller in controllerlocation)
+		if(controller.down)
+			if(!(affected_levels.Find(controller.down_target)))
+				recalibrate_level(controller.down_target)
+		if(controller.up)
+			if(!(affected_levels.Find(controller.up_target)))
+				recalibrate_level(controller.up_target)
 
 // Misc
 

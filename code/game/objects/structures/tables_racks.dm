@@ -341,6 +341,12 @@
 			return
 		// If the tray IS empty, continue on (tray will be placed on the table like other items)
 
+	if (istype(I, /obj/item/weapon/storage/bag/dicecup))
+		if(I.contents.len > 0)
+			return
+		// If the dicebug IS empty, continue on  dicethrowing hapends in dicecup proc.
+
+
 	if(isrobot(user))
 		return
 

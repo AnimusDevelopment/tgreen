@@ -45,7 +45,9 @@
 							"Security",
 							"Medical",
 							"Misc",
-							"Stock Parts"
+							"Stock Parts",
+							"Dinnerware",
+							"BoardGames"
 							)
 
 /obj/machinery/autolathe/New()

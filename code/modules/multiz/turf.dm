@@ -26,7 +26,7 @@
 					var/area/areacheck = get_area(src)
 					var/blocked = 0
 					for(var/atom/A in floorbelow.contents)
-						if(A.density)
+						if(A.density && !istype(A, /mob))
 							blocked = 1
 							break
 						if(istype(A, /obj/machinery/atmospherics/pipe/zpipe/up) && istype(AM,/obj/item/pipe))
@@ -78,16 +78,15 @@
 		if(O.level == 1)
 			O.hide(0)
 
-//overwrite the attackby of space to transform it to openspace if necessary
-/turf/space/attackby(obj/item/C as obj, mob/user as mob)
-	if (istype(C, /obj/item/stack/cable_coil))
-		var/turf/simulated/floor/open/W = src.ChangeTurf(/turf/simulated/floor/open)
-		W.attackby(C, user)
-		return
-	..()
-
 /turf/simulated/floor/open/ex_act(severity)
 	// cant destroy empty space with an ordinary bomb
+	return
+
+//Singulo shuldn't feed from it, fucken duck.
+/turf/simulated/floor/open/singularity_act()
+	return
+
+/turf/simulated/floor/open/singularity_pull()
 	return
 
 // Straight copy from space.
@@ -137,3 +136,6 @@
 		var/obj/structure/lattice/catwalk/W = locate(/obj/structure/lattice/catwalk, src)
 		if(W)
 			W.attackby(C, user)
+
+	if(istype(C, /obj/item/stack/cable_coil))
+		return ..()

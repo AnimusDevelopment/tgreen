@@ -179,3 +179,6 @@
 
 /obj/get_spans()
 	return ..() | SPAN_ROBOT
+
+/obj/proc/BlocksAtmosAbove()
+	return 0

@@ -142,21 +142,36 @@ turf/simulated/proc/share_temperature_mutual_solid(turf/simulated/sharer, conduc
 
 /turf/simulated/process_cell(fire_count)
 
+	if(!istype(air))//sanity check
+		SSair.remove_from_active(src)
+		return
+
 	if(archived_cycle < fire_count) //archive self if not already done
 		archive()
 	current_cycle = fire_count
 
 	var/remove = 1 //set by non simulated turfs who are sharing with this turf
 
-	for(var/direction in cardinal)
+	for(var/direction in cardinal|cardinal_extension)
 		if(!(atmos_adjacent_turfs & direction))
 			continue
-
-		var/turf/enemy_tile = get_step(src, direction)
-
+		var/turf/enemy_tile
+		if(direction in cardinal_extension)
+			var/turf/controllerlocation = locate(1, 1, z)
+			if(direction==UP)
+				for(var/obj/effect/landmark/zcontroller/controller in controllerlocation)
+					enemy_tile = locate(x,y,controller.up_target)
+			if(direction==DOWN)
+				for(var/obj/effect/landmark/zcontroller/controller in controllerlocation)
+					enemy_tile = locate(x,y,controller.down_target)
+		else
+			enemy_tile = get_step(src, direction)
+		if(!enemy_tile)
+			continue
 		if(istype(enemy_tile,/turf/simulated))
 			var/turf/simulated/enemy_simulated = enemy_tile
-
+			if(!istype(enemy_simulated.air))//sanity check
+				continue
 			if(current_cycle > enemy_simulated.current_cycle)
 				enemy_simulated.archive()
 

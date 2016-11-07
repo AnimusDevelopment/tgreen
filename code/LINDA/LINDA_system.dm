@@ -32,6 +32,14 @@
 	if(!R)
 		return 1
 
+/turf/proc/CanAtmosPassAbove()
+	if(blocks_air)
+		return 0
+	for(var/obj/O in contents)
+		if(O.BlocksAtmosAbove())
+			return 0
+	return 1
+
 atom/movable/proc/CanAtmosPass()
 	return 1
 
@@ -78,6 +86,39 @@ turf/CanPass(atom/movable/mover, turf/target, height=1.5)
 			if(T.atmos_adjacent_turfs & counterdir)
 				T.atmos_adjacent_turfs_amount -= 1
 			T.atmos_adjacent_turfs &= ~counterdir
+	var/turf/T
+	var/turf/controllerlocation = locate(1, 1, z)
+	for(var/obj/effect/landmark/zcontroller/controller in controllerlocation)
+		if(controller.down)
+			T = get_turf(locate(x,y,controller.down_target))
+	if(istype(T))
+		if((istype(src,/turf/simulated/floor/open)||istype(src, /turf/space))&&T.CanAtmosPassAbove())
+			atmos_adjacent_turfs_amount += 1
+			atmos_adjacent_turfs |= DOWN
+			if(!(T.atmos_adjacent_turfs & UP))
+				T.atmos_adjacent_turfs_amount += 1
+			T.atmos_adjacent_turfs |= UP
+		else
+			atmos_adjacent_turfs &= ~DOWN
+			if(T.atmos_adjacent_turfs & UP)
+				T.atmos_adjacent_turfs_amount -= 1
+			T.atmos_adjacent_turfs &= ~UP
+	for(var/obj/effect/landmark/zcontroller/controller in controllerlocation)
+		if (controller.up)
+			T = locate(x,y,controller.up_target)
+	if(istype(T))
+		if((istype(T,/turf/simulated/floor/open)||istype(T, /turf/space))&&CanAtmosPassAbove())
+			atmos_adjacent_turfs_amount += 1
+			atmos_adjacent_turfs |= UP
+			if(!(T.atmos_adjacent_turfs & DOWN))
+				T.atmos_adjacent_turfs_amount += 1
+			T.atmos_adjacent_turfs |= DOWN
+		else
+			atmos_adjacent_turfs &= ~UP
+			if(T.atmos_adjacent_turfs & DOWN)
+				T.atmos_adjacent_turfs_amount -= 1
+			T.atmos_adjacent_turfs &= ~DOWN
+
 
 /atom/movable/proc/air_update_turf(var/command = 0)
 	if(!istype(loc,/turf) && command)

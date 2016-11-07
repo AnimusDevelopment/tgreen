@@ -302,4 +302,4 @@ var/list/pointers = list()
 	for(var/d in data)
 		var/val = data[d]
 		if(istext(val))
-			data[d] = strip_html_properly(val)
+			data[d] = sanitize(strip_html_properly(val))

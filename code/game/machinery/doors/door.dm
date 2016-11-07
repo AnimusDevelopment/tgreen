@@ -82,6 +82,9 @@
 /obj/machinery/door/CanAtmosPass()
 	return !density
 
+/obj/machinery/door/BlocksAtmosAbove()
+	return density
+
 //used in the AStar algorithm to determinate if the turf the door is on is passable
 /obj/machinery/door/proc/CanAStarPass(var/obj/item/weapon/card/id/ID)
 	return !density

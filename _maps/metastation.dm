@@ -11,6 +11,7 @@ z4 = derelict station
 z5 = mining
 z6 = empty space
 z7 = empty space
+z8 = second floor
 */
 
 #if !defined(MAP_FILE)

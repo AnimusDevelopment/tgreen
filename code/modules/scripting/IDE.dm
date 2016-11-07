@@ -155,7 +155,7 @@ client/verb/tcsrevert()
 		src << output("<font color = red>Failed to revert: Unable to locate machine.</font color>", "tcserror")
 
 
-client/verb/tcsclearmem()
+client/verb/tcsclear()
 	set hidden = 1
 	if(mob.machine || issilicon(mob))
 		if(telecomms_check(mob))
@@ -165,22 +165,23 @@ client/verb/tcsclearmem()
 
 			if(Machine.SelectedServer)
 				var/obj/machinery/telecomms/server/Server = Machine.SelectedServer
+				Server.Compiler.Kill_Processes()
 				Server.memory = list() // clear the memory
 				// Show results
 				src << output(null, "tcserror")
-				src << output("<font color = blue>Server memory cleared!</font color>", "tcserror")
+				src << output("<font color = blue>Server was reset!</font color>", "tcserror")
 				for(var/mob/M in Machine.viewingcode)
 					if(M.client)
-						M << output("<font color = blue>Server memory cleared!</font color>", "tcserror")
+						M << output("<font color = blue>Server was reset!</font color>", "tcserror")
 			else
 				src << output(null, "tcserror")
-				src << output("<font color = red>Failed to clear memory: Unable to locate server machine.</font color>", "tcserror")
+				src << output("<font color = red>Failed to reset server: Unable to locate server machine.</font color>", "tcserror")
 		else
 			src << output(null, "tcserror")
-			src << output("<font color = red>Failed to clear memory: Unable to locate machine.</font color>", "tcserror")
+			src << output("<font color = red>Failed to reset server: Unable to locate machine.</font color>", "tcserror")
 	else
 		src << output(null, "tcserror")
-		src << output("<font color = red>Failed to clear memory: Unable to locate machine.</font color>", "tcserror")
+		src << output("<font color = red>Failed to reset server: Unable to locate machine.</font color>", "tcserror")
 
 /proc/telecomms_check(var/mob/mob)
 	if(mob && istype(mob.machine, /obj/machinery/computer/telecomms/traffic) && in_range(mob.machine, mob) || issilicon(mob) && istype(mob.machine, /obj/machinery/computer/telecomms/traffic))

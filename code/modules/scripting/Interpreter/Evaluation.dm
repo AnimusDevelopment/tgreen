@@ -4,6 +4,8 @@
 /n_Interpreter
 	proc
 		Eval(node/expression/exp)
+			if(exiting)
+				return
 			if(istype(exp, /node/expression/FunctionCall))
 				return RunFunction(exp)
 			else if(istype(exp, /node/expression/operator))

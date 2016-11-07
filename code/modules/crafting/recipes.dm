@@ -36,3 +36,10 @@
 				/obj/item/device/assembly/signaler = 1)
 	time = 240
 	parts = list(/obj/item/device/assembly/signaler = 1)
+
+/datum/table_recipe/dicecup
+	name = "Dicecup"
+	reqs = list(/obj/item/weapon/reagent_containers/food/drinks/soda_cans = 1)
+	result = /obj/item/weapon/storage/bag/dicecup
+	time = 75
+
