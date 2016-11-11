@@ -35,18 +35,18 @@
 	max_water = 30
 	sprite_name = "miniFE"
 
-/obj/item/weapon/extinguisher/sindifire
-	name = "sindifire"
+/obj/item/weapon/extinguisher/syndifire
+	name = "syndifire"
 	desc = "“яжелее обычного огнетушителя и пахнет чем-то горючим. ћожно разглядеть надпись ЂMade in SyndicateЩї."
 	icon = 'icons/obj/items.dmi'
-	icon_state = "sindifire0"
-	item_state = "sindifire"
+	icon_state = "syndifire0"
+	item_state = "syndifire"
 	hitsound = 'sound/weapons/smash.ogg'
 	flags = null
 	throwforce = 30
 	force = 27
 	m_amt = 90
-	sprite_name = "sindifire"
+	sprite_name = "syndifire"
 	max_water = 150
 	precision = 1
 	cooling_power = 0
@@ -64,7 +64,7 @@
 	create_reagents(max_water)
 	reagents.add_reagent("water", max_water)
 
-/obj/item/weapon/extinguisher/sindifire/New()
+/obj/item/weapon/extinguisher/syndifire/New()
 	create_reagents(max_water)
 	reagents.add_reagent("clf3", max_water)
 
@@ -189,7 +189,7 @@
 	else
 		return ..()
 
-/obj/item/weapon/extinguisher/sindifire/afterattack(atom/target, mob/user , flag)
+/obj/item/weapon/extinguisher/syndifire/afterattack(atom/target, mob/user , flag)
 	//TODO; Add support for reagents in water.
 	if(target.loc == user)//No more spraying yourself when putting your extinguisher away
 		return
