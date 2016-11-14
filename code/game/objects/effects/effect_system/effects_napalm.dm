@@ -4,7 +4,7 @@
 	name = "napalm"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "BMF"
-	var/life = 5.0
+	var/life = 15.0
 	mouse_opacity = 0
 
 
