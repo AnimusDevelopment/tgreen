@@ -15,6 +15,9 @@
 	)
 	var/mode = "grey"
 
+
+	materials = list(MAT_METAL=5000, MAT_GLASS=2000)
+
 	m_amt = 5000
 	g_amt = 2000
 

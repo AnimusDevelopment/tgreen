@@ -21,6 +21,7 @@ AI MODULES
 	origin_tech = "programming=3"
 	var/list/laws = list()
 	var/bypass_law_amt_check = 0
+	materials = list(MAT_GOLD=50)
 
 //The proc other things should be calling
 /obj/item/weapon/aiModule/proc/install(var/mob/living/silicon/reciever, var/mob/user)

@@ -16,6 +16,7 @@ MASS SPECTROMETER
 	slot_flags = SLOT_BELT
 	w_class = 2
 	item_state = "electronic"
+	materials = list(MAT_METAL=150)
 	m_amt = 150
 	origin_tech = "magnets=1;engineering=1"
 

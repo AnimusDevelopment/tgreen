@@ -161,3 +161,19 @@
 #define CHANCE_TALK 15
 #define MAXCOIL 30
 #define RESIZE_DEFAULT_SIZE 1
+
+//Material defines
+#define MAT_METAL		"$metal"
+#define MAT_GLASS		"$glass"
+#define MAT_SILVER		"$silver"
+#define MAT_GOLD		"$gold"
+#define MAT_DIAMOND		"$diamond"
+#define MAT_URANIUM		"$uranium"
+#define MAT_PLASMA		"$plasma"
+#define MAT_BANANIUM	"$bananium"
+
+//The amount of materials you get from a sheet of mineral like iron/diamond/glass etc
+#define MINERAL_MATERIAL_AMOUNT 2000
+
+//The maximum size of a stack object.
+#define MAX_STACK_SIZE 50

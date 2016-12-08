@@ -1,4 +1,5 @@
 /obj/item/wallframe
+	materials = list(MAT_METAL=MINERAL_MATERIAL_AMOUNT*2)
 	flags = CONDUCT
 	origin_tech = "materials=1;engineering=1"
 	item_state = "syringe_kit"

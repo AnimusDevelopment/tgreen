@@ -7,6 +7,7 @@
 	icon_state = "tile"
 	w_class = 3.0
 	force = 6.0
+	materials = list(MAT_METAL=500)
 	m_amt = 937.5
 	throwforce = 10.0
 	throw_speed = 3
