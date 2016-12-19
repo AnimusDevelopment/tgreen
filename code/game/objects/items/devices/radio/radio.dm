@@ -34,6 +34,7 @@
 	throw_speed = 3
 	throw_range = 7
 	w_class = 2
+	materials = list(MAT_METAL=75, MAT_GLASS=25)
 	g_amt = 25
 	m_amt = 75
 

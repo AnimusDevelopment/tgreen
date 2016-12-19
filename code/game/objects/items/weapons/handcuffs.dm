@@ -15,6 +15,7 @@
 	w_class = 2.0
 	throw_speed = 3
 	throw_range = 5
+	materials = list(MAT_METAL=500)
 	m_amt = 500
 	origin_tech = "materials=1"
 	breakouttime = 600 //Deciseconds = 60s = 1 minute
@@ -96,6 +97,7 @@
 	desc = "Looks like some cables tied together. Could be used to tie something up."
 	icon_state = "cuff_red"
 	item_state = "coil_red"
+	materials = list(MAT_METAL=150, MAT_GLASS=75)
 	breakouttime = 300 //Deciseconds = 30s
 	cuffsound = 'sound/weapons/cablecuff.ogg'
 

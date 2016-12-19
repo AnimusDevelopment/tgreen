@@ -3,6 +3,7 @@
 	desc = "An updated, modular intercom that fits over the head. Takes encryption keys. \nTo speak on the general radio frequency, use ; before speaking."
 	icon_state = "headset"
 	item_state = "headset"
+	materials = list(MAT_METAL=75)
 	g_amt = 0
 	m_amt = 75
 	subspace_transmission = 1

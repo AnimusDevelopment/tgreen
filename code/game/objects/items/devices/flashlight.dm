@@ -7,6 +7,7 @@
 	w_class = 2
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
+	materials = list(MAT_METAL=50, MAT_GLASS=20)
 	m_amt = 50
 	g_amt = 20
 	action_button_name = "Toggle Light"

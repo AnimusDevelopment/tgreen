@@ -13,6 +13,7 @@
 	desc = "HOLY SHEET! That is a lot of glass."
 	singular_name = "glass sheet"
 	icon_state = "sheet-glass"
+	materials = list(MAT_GLASS=MINERAL_MATERIAL_AMOUNT)
 	g_amt = MINERAL_MATERIAL_AMOUNT
 	origin_tech = "materials=1"
 

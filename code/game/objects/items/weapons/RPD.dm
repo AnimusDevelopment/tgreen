@@ -136,6 +136,7 @@ var/global/list/RPD_recipes=list(
 	throw_speed = 1
 	throw_range = 5
 	w_class = 3.0
+	materials = list(MAT_METAL=75000, MAT_GLASS=37500)
 	m_amt = 75000
 	g_amt = 37500
 	origin_tech = "engineering=4;materials=2"
@@ -200,7 +201,7 @@ var/global/list/RPD_recipes=list(
 	else if(screen == CATEGORY_DISPOSALS)
 		dat += "<A href='?src=\ref[src];screen=[CATEGORY_ATMOS];makepipe=0;dir=1;type=0'>Atmospherics</A> <span class='linkOn'>Disposals</span><BR>"
 	dat += "</ul>"
-	
+
 	var/icon/preview=null
 	var/datbuild = ""
 	for(var/category in RPD_recipes)
@@ -220,7 +221,7 @@ var/global/list/RPD_recipes=list(
 					datbuild += "<span class='linkOn'>[label]</span>"
 				else
 					datbuild += I.Render(src,label)
-		
+
 		if(length(datbuild) > 0)
 			dat += "<b>[category]:</b><ul>"
 			dat += datbuild
@@ -405,17 +406,17 @@ var/global/list/RPD_recipes=list(
 		background:none;
 		margin: 1px;
 	}
-	
+
 	a.imglink:hover {
 		background:none;
 		color:none;
 	}
-	
+
 	a.imglink.selected img {
 		border: 1px solid #24722e;
 		background: #2f943c;
 	}
-	
+
 	a img {
 		border: 1px solid #161616;
 		background: #40628a;
@@ -452,7 +453,7 @@ var/global/list/RPD_recipes=list(
 	if(href_list["screen"])
 		screen = text2num(href_list["screen"])
 		show_menu(usr)
-	
+
 	if(href_list["setdir"])
 		p_dir= text2num(href_list["setdir"])
 		p_flipped = text2num(href_list["flipped"])
@@ -517,12 +518,12 @@ var/global/list/RPD_recipes=list(
 
 	if(istype(A,/area/shuttle)||istype(A,/turf/space/transit))
 		return 0
-	
+
 	//So that changing the menu settings doesn't affect the pipes already being built.
 	var/queued_p_type = p_type
 	var/queued_p_dir = p_dir
 	var/queued_p_flipped = p_flipped
-	
+
 	switch(p_class)
 		if(PAINT_MODE) // Paint pipes
 			if(!istype(A,/obj/machinery/atmospherics/pipe))

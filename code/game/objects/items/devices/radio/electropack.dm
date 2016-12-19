@@ -7,6 +7,7 @@
 	flags = CONDUCT
 	slot_flags = SLOT_BACK
 	w_class = 5.0
+	materials = list(MAT_METAL=10000, MAT_GLASS=2500)
 	g_amt = 2500
 	m_amt = 10000
 	var/on = 1

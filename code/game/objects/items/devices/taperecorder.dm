@@ -7,6 +7,7 @@
 	flags = HEAR
 	slot_flags = SLOT_BELT
 	languages = ALL //this is a translator, after all.
+	materials = list(MAT_METAL=60, MAT_GLASS=30)
 	m_amt = 60
 	g_amt = 30
 	force = 2
