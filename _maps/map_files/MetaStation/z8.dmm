@@ -211,7 +211,7 @@
 "ec" = (/turf/simulated/floor/salty,/area/maintenance/chapel_maint)
 "ed" = (/obj/machinery/vending/snack{use_power = 0},/turf/simulated/floor/salty,/area/maintenance/chapel_maint)
 "ee" = (/obj/structure/stool/bed/chair/modern,/turf/simulated/floor/salty,/area/maintenance/chapel_maint)
-"ef" = (/obj/machinery/door_control{dir = 2;id = "saltroom";name = "Shutter Control";pixel_x = 26;pixel_y = 6;req_access_txt = "5;9";req_one_access_txt = "0"},/turf/simulated/floor/salty,/area/maintenance/chapel_maint)
+"ef" = (/obj/machinery/door_control{dir = 2;id = "saltroom";name = "Shutter Control";pixel_x = 26;pixel_y = 6;req_access_txt = "0";req_one_access_txt = "0"},/turf/simulated/floor/salty,/area/maintenance/chapel_maint)
 "eg" = (/obj/structure/stool/bed/chair/modern{dir = 4},/turf/simulated/floor/salty,/area/maintenance/chapel_maint)
 "eh" = (/obj/structure/table/glass,/obj/item/device/flashlight/lantern,/turf/simulated/floor/salty,/area/maintenance/chapel_maint)
 "ei" = (/obj/structure/table/glass,/turf/simulated/floor/salty,/area/maintenance/chapel_maint)
