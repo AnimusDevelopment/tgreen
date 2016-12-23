@@ -338,6 +338,19 @@
 			else
 				user << "<span class='notice'>There not enogh spase for [I] in the [src].</span>"
 			return
+		else if(istype(I, /obj/item/weapon/book))
+			if (fuel + 250 < fuel_capasity())
+				fuel = fuel + 250
+				ignition_chance += 15
+				src.updateicon()
+				user.visible_message( \
+					"[user] add [I] to the [src].", \
+					"<span class='notice'>You add [I] to the [src].</span>")
+				user.drop_item()
+				qdel(I)
+			else
+				user << "<span class='notice'>There not enogh spase for [I] in the [src].</span>"
+			return
 		else if(istype(I, /obj/item/weapon/contraband/poster))
 			if (fuel + 75 < fuel_capasity())
 				fuel = fuel + 75

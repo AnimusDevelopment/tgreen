@@ -385,7 +385,7 @@ datum/design/light_replacer
 	id = "airtank_small"
 	build_type = AUTOLATHE
 	materials = list("$metal" = 200)
-	build_path = /obj/item/weapon/tank/internals/emergency_oxygen
+	build_path = /obj/item/weapon/tank/internals/emergency_oxygen/empty
 	category = list("initial", "Misc")
 
 /datum/design/airtank_extended
@@ -393,7 +393,7 @@ datum/design/light_replacer
 	id = "airtank_engi"
 	build_type = AUTOLATHE
 	materials = list("$metal" = 300)
-	build_path = /obj/item/weapon/tank/internals/emergency_oxygen/engi
+	build_path = /obj/item/weapon/tank/internals/emergency_oxygen/engi/empty
 	category = list("initial", "Misc")
 
 /datum/design/airtank_double
@@ -401,7 +401,7 @@ datum/design/light_replacer
 	id = "airtank_double"
 	build_type = AUTOLATHE
 	materials = list("$metal" = 400)
-	build_path = /obj/item/weapon/tank/internals/emergency_oxygen/double
+	build_path = /obj/item/weapon/tank/internals/emergency_oxygen/double/empty
 	category = list("initial", "Misc")
 
 /* CONSTRUCTION */
@@ -900,7 +900,7 @@ datum/design/light_replacer
 	id = "dise-bag"
 	build_type = AUTOLATHE
 	materials = list("$metal" = 20)
-	build_path = /obj/item/weapon/storage/pill_bottle/dice
+	build_path = /obj/item/weapon/storage/pill_bottle/dice/empty
 	category = list("initial", "BoardGames")
 
 /datum/design/dice_cubes
@@ -916,7 +916,7 @@ datum/design/light_replacer
 	id = "dise-bag-variety"
 	build_type = AUTOLATHE
 	materials = list("$metal" = 90)
-	build_path = /obj/item/weapon/storage/pill_bottle/dice/variety
+	build_path = /obj/item/weapon/storage/pill_bottle/dice
 	category = list("initial", "BoardGames")
 
 /* secret (well, this ones are awalable, but only by search) */
