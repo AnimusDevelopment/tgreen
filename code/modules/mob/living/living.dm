@@ -686,8 +686,7 @@ Sorry Giacom. Please don't be mad :(
 
 	//unbuckling yourself
 	if(buckled && last_special <= world.time)
-		if(stat != DEAD && sleeping == 0) //fix is here ahahah... happy new year
-			resist_buckle()
+		resist_buckle()
 
 	//Breaking out of a container (Locker, sleeper, cryo...)
 	else if(loc && istype(loc, /obj) && !isturf(loc))
