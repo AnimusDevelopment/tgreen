@@ -13,6 +13,7 @@ Assistant
 	selection_color = "#dddddd"
 	access = list()			//See /datum/job/assistant/get_access()
 	minimal_access = list()	//See /datum/job/assistant/get_access()
+	var/datum/job/assistant/dog = 0
 
 /datum/job/assistant/equip_items(var/mob/living/carbon/human/H)
 	if (prob(15) && H.gender == "male")
