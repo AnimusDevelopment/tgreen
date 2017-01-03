@@ -11,17 +11,17 @@
 #define HEAT_DAMAGE_LEVEL_3 8
 #define HEAT_DAMAGE_LEVEL_4 12
 
-#define COLD_DAMAGE_LEVEL_1 1
-#define COLD_DAMAGE_LEVEL_2 3
-#define COLD_DAMAGE_LEVEL_3 6
+#define COLD_DAMAGE_LEVEL_1 0.5
+#define COLD_DAMAGE_LEVEL_2 1.5
+#define COLD_DAMAGE_LEVEL_3 3
 
 #define HEAT_GAS_DAMAGE_LEVEL_1 2
 #define HEAT_GAS_DAMAGE_LEVEL_2 4
 #define HEAT_GAS_DAMAGE_LEVEL_3 8
 
-#define COLD_GAS_DAMAGE_LEVEL_1 1
-#define COLD_GAS_DAMAGE_LEVEL_2 3
-#define COLD_GAS_DAMAGE_LEVEL_3 6
+#define COLD_GAS_DAMAGE_LEVEL_1 0.5
+#define COLD_GAS_DAMAGE_LEVEL_2 1.5
+#define COLD_GAS_DAMAGE_LEVEL_3 3
 
 /datum/species
 	var/id = null		// if the game needs to manually check your race to do something not included in a proc here, it will use this
