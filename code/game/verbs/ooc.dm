@@ -33,8 +33,7 @@
 	var/keyname = key
 	var/donator_icon = ""
 
-	msg = emoji_parse(msg)
-	msg = kappa_parse(msg)
+	msg = smile_parse(msg)
 	if(holder)
 		if(holder.fakekey && is_donator(holder.fakekey))
 			donator_icon = "<img class=icon src=\ref['icons/donator.dmi'] iconstate='[holder.fakekey]'>"
