@@ -598,7 +598,7 @@ datum/reagent/space_cleaner/reaction_mob(var/mob/M, var/method=TOUCH, var/volume
 			if(H.shoes)
 				if(H.shoes.clean_blood())
 					H.update_inv_shoes(0)
-		M.clean_blood()
+		//M.clean_blood()
 
 datum/reagent/cryptobiolin
 	name = "Cryptobiolin"
